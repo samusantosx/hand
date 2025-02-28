@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1047553596271",
+    "project_id": "hand-b8429",
+    "storage_bucket": "hand-b8429.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047553596271:android:37ca0555b8b70075cb669a",
+        "android_client_info": {
+          "package_name": "com.Super.hande"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIeGghEkjYeNX_W-V2zaDXJ7F_cgvW-80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
