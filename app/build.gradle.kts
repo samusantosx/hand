@@ -2,11 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 
+    id("com.google.gms.google-services")
+
 }
 
 android {
     namespace = "com.Super.hande"
     compileSdk = 35
+
+
 
     defaultConfig {
         applicationId = "com.Super.hande"

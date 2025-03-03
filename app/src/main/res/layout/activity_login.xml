@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,7 +16,7 @@
         android:src="@drawable/handlogo"
         android:contentDescription="Logo"
         android:layout_gravity="center_horizontal"
-        android:marginBottom="16dp" />
+        android:layout_marginBottom="16dp"/>
 
     <!-- Campo de Email -->
     <EditText
@@ -27,7 +28,9 @@
         android:background="@android:drawable/edit_text"
         android:textColor="@color/black"
         android:textColorHint="@color/gray_light"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"/>
 
     <!-- Campo de Senha -->
     <EditText
@@ -40,18 +43,25 @@
         android:textColor="@color/black"
         android:textColorHint="@color/gray_light"
         android:inputType="textPassword"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"/>
 
     <!-- Botão de Login -->
-    <Button
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_btn1"
         android:text="Entrar"
         android:textColor="@color/white"
-        android:backgroundTint="@color/purple_500"
-        android:padding="12dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textAllCaps="false"/>
 
     <!-- Botão de Criar Conta -->
     <TextView
@@ -62,7 +72,8 @@
         android:textColor="@color/purple_500"
         android:textSize="16sp"
         android:layout_gravity="center_horizontal"
-        android:padding="8dp"
+        android:padding="15dp"
         android:clickable="true"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:layout_marginTop="15dp"/>
 </LinearLayout>
