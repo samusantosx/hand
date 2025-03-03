@@ -39,17 +39,17 @@ class MenuPrincipal : AppCompatActivity() {
         }
 
         binding.trainingModesButton.setOnClickListener {
-            val intent = Intent(this, TrainingModesActivity::class.java)
+            val intent = Intent(this, ModoDeTreino::class.java)
             startActivity(intent)
         }
 
         binding.performanceButton.setOnClickListener {
-            val intent = Intent(this, PerformanceActivity::class.java)
+            val intent = Intent(this, PerformanceJogador::class.java)
             startActivity(intent)
         }
 
         binding.historyButton.setOnClickListener {
-            val intent = Intent(this, TrainingHistoryActivity::class.java)
+            val intent = Intent(this, HistoricoDeTreino::class.java)
             startActivity(intent)
         }
 
@@ -64,7 +64,7 @@ class MenuPrincipal : AppCompatActivity() {
             .setMessage("Tem certeza de que deseja sair?")
             .setPositiveButton("Sim") { _, _ ->
                 auth.signOut()
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, Login::class.java)
                 startActivity(intent)
                 finish()
             }

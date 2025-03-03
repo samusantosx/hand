@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Hande"
         tools:targetApi="31">
         <activity
+            android:name=".TelaCadastroUsuario"
+            android:exported="false" />
+        <activity
             android:name=".TreinoDeResistencia"
             android:exported="false" />
         <activity
@@ -43,7 +46,7 @@
             android:name=".PerfilDoJogador"
             android:exported="false" />
         <activity
-            android:name=".HistoricoTreino"
+            android:name=".ModoDeTreino"
             android:exported="false" />
         <activity
             android:name=".ModoTreino"

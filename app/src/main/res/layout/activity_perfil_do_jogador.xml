@@ -5,18 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilDoJogador">
+    tools:context=".PerfilDoJogador"
+    android:layout_gravity="center">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/playerImage"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src=""
+            android:src="@drawable/handlogo"
             android:contentDescription="Foto do Jogador"
             android:scaleType="centerCrop"
             android:layout_marginBottom="16dp"/>
