@@ -71,7 +71,7 @@ class Login : AppCompatActivity() {
         // Configura o listener para o texto de cadastro
        binding.registerText.setOnClickListener {
             //mudar o "Login" para a "Cadastro"
-            startActivity(Intent(this, Login::class.java))  // Navega para a tela de cadastro
+            startActivity(Intent(this, Cadastro::class.java))  // Navega para a tela de cadastro
         }
     }
 }

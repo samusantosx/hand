@@ -71,6 +71,7 @@ dependencies {
 
         // Biblioteca de gráficos
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation(libs.firebase.firestore)
 
 
 }

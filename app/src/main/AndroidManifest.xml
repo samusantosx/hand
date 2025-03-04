@@ -22,6 +22,9 @@
             android:name=".TelaCadastroUsuario"
             android:exported="false" />
         <activity
+            android:name=".ModoDeTreino"
+            android:exported="false" />
+        <activity
             android:name=".TreinoDeResistencia"
             android:exported="false" />
         <activity
@@ -46,22 +49,11 @@
             android:name=".PerfilDoJogador"
             android:exported="false" />
         <activity
-            android:name=".ModoDeTreino"
-            android:exported="false" />
-        <activity
-            android:name=".ModoTreino"
-            android:exported="false" />
-        <activity
-            android:name=".Performace"
-            android:exported="false" />
-        <activity
-            android:name=".Dashboard"
-            android:exported="false" />
-        <activity
-            android:name=".LoginScreen"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Cadastro"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
