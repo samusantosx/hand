@@ -33,7 +33,7 @@
         android:padding="8dp"/>
 
     <TextView
-        android:id="@+id/goalFrequencyText"
+        android:id="@+id/goalsFrequencyText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Frequência de Gols: -- gols/min"

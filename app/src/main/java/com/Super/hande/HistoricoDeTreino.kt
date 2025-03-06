@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.Super.hande.databinding.ActivityHistoricoDeTreinoBinding
+import com.Super.hande.model.SessaoDeTreino
 import com.google.firebase.database.*
 
 

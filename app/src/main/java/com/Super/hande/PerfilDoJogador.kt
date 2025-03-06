@@ -59,7 +59,7 @@ class PerfilDoJogador : AppCompatActivity() {
         // Atualizar os dados em tempo real
         db.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val dados = snapshot.getValue(PerformanceData::class.java)
+                val dados = snapshot.getValue(PerformanceJogadorData::class.java)
                 if (dados != null) {
                     atualizarUI(dados)
                 }
@@ -71,7 +71,7 @@ class PerfilDoJogador : AppCompatActivity() {
         })
     }
 
-    private fun atualizarUI(dados: PerformanceData) {
+    private fun atualizarUI(dados: PerformanceJogadorData) {
         accuracyText.text = "Precisão Média: ${dados.precisao}%"
         speedText.text = "Velocidade Média: ${dados.velocidade} m/s"
         goalsText.text = "Total de Gols: ${dados.frequenciaGols}"

@@ -1,4 +1,4 @@
-package com.Super.hande
+package com.Super.hande.model
 
 class SessaoDeTreino {
     val date: String = ""
