@@ -2,15 +2,18 @@ package com.Super.hande
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityTreinoDeResistenciaBinding
+import com.google.firebase.database.*
 
 class TreinoDeResistencia : AppCompatActivity() {
 
     private lateinit var binding: ActivityTreinoDeResistenciaBinding
+    private lateinit var db: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,18 +30,27 @@ class TreinoDeResistencia : AppCompatActivity() {
             insets
         }
 
-        // Recebendo dados do Arduino
-        /*
-        val goalsData = BluetoothManager.receiveData() ?: "0"
-        binding.goalsValue.text = "Gols por minuto: $goalsData"
+        // Conectar ao Firebase para receber os dados de resistência (gols por minuto)
+        db = FirebaseDatabase.getInstance().getReference("treinoResistencia")
 
-        // Configura o listener para o botão de voltar ao menu
+        db.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val golsPorMinuto = snapshot.getValue(Int::class.java)
+                if (golsPorMinuto != null) {
+                    binding.goalsValue.text = "Gols por minuto: $golsPorMinuto"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(applicationContext, "Erro ao acessar Firebase", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        // Configura o botão para voltar ao menu principal
         binding.btnVoltar.setOnClickListener {
-            val intent = Intent(this, DashboardActivity::class.java)
+            val intent = Intent(this, MenuPrincipal::class.java)
             startActivity(intent)
             finish()  // Fecha a tela atual para evitar sobreposição de atividades
         }
-
-         */
     }
 }

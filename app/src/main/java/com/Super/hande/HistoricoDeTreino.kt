@@ -9,26 +9,24 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.Super.hande.databinding.ActivityHistoricoDeTreinoBinding
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import com.google.firebase.database.*
+
 
 class HistoricoDeTreino : AppCompatActivity() {
 
     private lateinit var binding: ActivityHistoricoDeTreinoBinding
     private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: TreinoAdapter
+    private lateinit var treinoList: MutableList<SessaoDeTreino>
+    private lateinit var db: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        //crie ess linha em outras telas
         binding = ActivityHistoricoDeTreinoBinding.inflate(layoutInflater)
-
-        //mude essa lina tambem
         setContentView(binding.root)
 
-        setContentView(R.layout.activity_historico_de_treino)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -38,50 +36,28 @@ class HistoricoDeTreino : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewHistory)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Certifique-se de que as permissões de Bluetooth foram solicitadas e concedidas
-        /*
-        if (BluetoothManager.connect()) {
-            Toast.makeText(this, "Conectado ao Arduino", Toast.LENGTH_SHORT).show()
-            receiveTrainingData()  // Receber os dados do Arduino
-        } else {
-            Toast.makeText(this, "Erro ao conectar", Toast.LENGTH_SHORT).show()
-        }
+        treinoList = mutableListOf()
+        adapter = TreinoAdapter(treinoList)
+        recyclerView.adapter = adapter
 
-        private fun receiveTrainingData() {
-            // Usar coroutines em vez de Thread.sleep para melhor desempenho
-            Thread {
-                try {
-                    while (true) {
-                        val data = BluetoothManager.receiveData()  // Recebe dados do Arduino
-                        data?.let {
-                            val parts = it.split(",")
-                            if (parts.size == 3) {
-                                // Criação de uma nova sessão de treino com os dados recebidos
-                                val session = TrainingSession(
-                                    date = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(
-                                        Date()
-                                    ),
-                                    accuracy = parts[0].toInt(),
-                                    speed = parts[1].toDouble(),
-                                    goals = parts[2].toInt()
-                                )
-                                runOnUiThread {
-                                    // Adiciona a nova sessão ao início da lista
-                                    HistoricoDeTreinoList.add(0, session)
-                                    // Aqui você pode atualizar a UI diretamente, se necessário
-                                    // Por exemplo, você pode usar um LiveData ou StateFlow para observar as mudanças na lista
-                                }
-                            }
-                        }
-                        // Pausa de 2 segundos entre as leituras de dados
-                        Thread.sleep(2000)
+        // Conectar ao Firebase para buscar os treinos salvos
+        db = FirebaseDatabase.getInstance().getReference("historicoTreinos")
+
+        db.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                treinoList.clear()
+                for (treinoSnapshot in snapshot.children) {
+                    val treino = treinoSnapshot.getValue(SessaoDeTreino::class.java)
+                    if (treino != null) {
+                        treinoList.add(0, treino) // Adiciona no início para manter a ordem cronológica
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
                 }
-            }.start()
-        }
+                adapter.notifyDataSetChanged()
+            }
 
-         */
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(applicationContext, "Erro ao acessar Firebase", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

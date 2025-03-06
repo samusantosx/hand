@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Hande"
         tools:targetApi="31">
         <activity
+            android:name=".TreinoAdapter"
+            android:exported="false" />
+        <activity
             android:name=".TelaCadastroUsuario"
             android:exported="false" />
         <activity
@@ -51,7 +54,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".Cadastro"
             android:exported="true">
