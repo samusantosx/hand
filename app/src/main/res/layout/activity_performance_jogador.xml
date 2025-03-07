@@ -17,7 +17,7 @@
 
     <!-- Exibição dos dados numéricos -->
     <TextView
-        android:id="@+id/accuracyText"
+        android:id="@+id/precisionText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Precisão: --%"
@@ -42,7 +42,7 @@
 
     <!-- Gráficos para visualização -->
     <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/accuracyChart"
+        android:id="@+id/precisionChart"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"/>
