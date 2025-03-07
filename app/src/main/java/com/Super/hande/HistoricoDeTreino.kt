@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.Super.hande.adapter.AdapterHistorico
 import com.Super.hande.databinding.ActivityHistoricoDeTreinoBinding
 import com.Super.hande.model.SessaoDeTreino
 import com.google.firebase.database.*
@@ -17,7 +18,7 @@ class HistoricoDeTreino : AppCompatActivity() {
 
     private lateinit var binding: ActivityHistoricoDeTreinoBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: TreinoAdapter
+    private lateinit var adapter: AdapterHistorico
     private lateinit var treinoList: MutableList<SessaoDeTreino>
     private lateinit var db: DatabaseReference
 
@@ -33,12 +34,12 @@ class HistoricoDeTreino : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        /*
         recyclerView = findViewById(R.id.recyclerViewHistory)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         treinoList = mutableListOf()
-        adapter = TreinoAdapter(treinoList)
+        adapter = AdapterHistorico(treinoList)
         recyclerView.adapter = adapter
 
         // Conectar ao Firebase para buscar os treinos salvos
@@ -60,5 +61,8 @@ class HistoricoDeTreino : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Erro ao acessar Firebase", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+ */
     }
 }

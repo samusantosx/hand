@@ -72,6 +72,9 @@ dependencies {
         // Biblioteca de gráficos
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation(libs.firebase.firestore)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation ("com.github.anastr:speedviewlib:1.6.1")
 
 
 }

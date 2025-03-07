@@ -29,7 +29,6 @@ class ModoDeTreino : AppCompatActivity() {
             insets
         }
 
-        // Inicializa os botões
         // Navega para Treino de Precisão
         binding.precisionTrainingButton.setOnClickListener {
             val intent = Intent(this, TreinoDePrecisao::class.java)

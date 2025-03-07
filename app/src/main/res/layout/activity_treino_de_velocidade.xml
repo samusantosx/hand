@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:id="@+id/main">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,11 +16,37 @@
         android:textStyle="bold"
         android:paddingBottom="16dp" />
 
+
+    <com.github.anastr.speedviewlib.SpeedView
+        android:id="@+id/velocimetro"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="20dp"
+        app:sv_speedTextPosition="BOTTOM_CENTER"
+        app:sv_speedTextSize="40sp"
+        app:sv_speedTextColor="@color/verde"
+        app:sv_speedTextFormat="INTEGER"
+        app:sv_indicatorColor="@color/black"
+        app:sv_indicatorWidth="4dp"
+        app:sv_tickNumber="8"
+        app:sv_tickTextFormat="INTEGER"
+        app:sv_backgroundCircleColor="@color/white"
+        app:sv_markColor="@color/black"
+        app:sv_unit="km/h"
+        app:sv_unitTextSize="16sp"
+        app:sv_unitTextColor="@color/black"
+        app:sv_unitUnderSpeedText="true"
+        app:sv_unitSpeedInterval="8dp"
+        app:sv_withTremble="false"
+        app:sv_indicatorLightColor="#BB0000FF"
+        app:sv_withIndicatorLight="true"
+        app:sv_maxSpeed="300"/>
+
     <TextView
         android:id="@+id/speedValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Velocidade da bola: -- m/s"
+        android:text="Velocidade da bola"
         android:textSize="18sp"
         android:textStyle="bold"
         android:paddingBottom="8dp" />
