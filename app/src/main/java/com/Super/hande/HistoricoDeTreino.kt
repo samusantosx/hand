@@ -34,7 +34,7 @@ class HistoricoDeTreino : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        /*
+
         recyclerView = findViewById(R.id.recyclerViewHistory)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -63,6 +63,4 @@ class HistoricoDeTreino : AppCompatActivity() {
         })
     }
 
- */
     }
-}
