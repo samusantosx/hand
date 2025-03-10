@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,7 +24,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ModoDeTreino"
+            android:name=".MenuPrincipal"
             android:exported="false" />
         <activity
             android:name=".TreinoDeResistencia"
@@ -29,7 +33,7 @@
             android:name=".PerfilDoJogador"
             android:exported="false" />
         <activity
-            android:name=".TreinoDePrecisao"
+            android:name=".Cadastro"
             android:exported="false" />
         <activity
             android:name=".PerformanceJogador"
@@ -38,19 +42,19 @@
             android:name=".HistoricoDeTreino"
             android:exported="false" />
         <activity
-            android:name=".MenuPrincipal"
-            android:exported="false" />
-        <activity
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".Cadastro"
+            android:name=".ModoDeTreino"
+            android:exported="false" />
+        <activity
+            android:name=".TreinoDeVelocidade"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".TreinoDeVelocidade"
+            android:name=".TreinoDePrecisao"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

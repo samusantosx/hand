@@ -18,7 +18,23 @@
         android:textStyle="bold"
         android:paddingBottom="16dp" />
 
-    <!-- Outros elementos do treino -->
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">  <!-- Defina um tamanho adequado -->
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/goal"
+            android:scaleType="fitXY" />
+
+        <com.Super.hande.GoalOverlayView
+            android:id="@+id/goalOverlayView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
 
     <Button
         android:id="@+id/backToMenuButton"
@@ -29,4 +45,5 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/purple_500"
         android:textColor="@color/white"/>
+
 </LinearLayout>

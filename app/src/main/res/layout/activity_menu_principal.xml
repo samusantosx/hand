@@ -9,7 +9,7 @@
     android:gravity="center"
     android:id="@+id/main"
     tools:context=".MenuPrincipal"
-    android:background="@color/purple_500">
+    android:background="@color/white">
 
     <TextView
         android:layout_width="wrap_content"
