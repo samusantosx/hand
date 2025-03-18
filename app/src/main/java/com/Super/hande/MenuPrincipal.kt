@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityMenuPrincipalBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class MenuPrincipal : AppCompatActivity() {
 
@@ -33,29 +34,45 @@ class MenuPrincipal : AppCompatActivity() {
         // Inicializa o Firebase Auth
         auth = FirebaseAuth.getInstance()
 
+        // Verifica se o usuário está logado
+        val usuarioAtual: FirebaseUser? = auth.currentUser
+        if (usuarioAtual == null) {
+            redirecionarParaLogin()
+        } else {
+            carregarDadosUsuario(usuarioAtual)
+        }
+
         // Configura os listeners dos botões
         binding.btnPlayerProfile.setOnClickListener {
             irTelaPerfilJogador()
         }
 
         binding.trainingModesButton.setOnClickListener {
-            val intent = Intent(this, ModoDeTreino::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, ModoDeTreino::class.java))
         }
 
         binding.performanceButton.setOnClickListener {
-            val intent = Intent(this, PerformanceJogador::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, PerformanceJogador::class.java))
         }
 
         binding.historyButton.setOnClickListener {
-            val intent = Intent(this, HistoricoDeTreino::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, HistoricoDeTreino::class.java))
         }
 
         binding.logoutButton.setOnClickListener {
             showLogoutDialog()
         }
+    }
+
+    private fun carregarDadosUsuario(usuario: FirebaseUser) {
+        // Exibe o e-mail do usuário na interface (pode ser modificado para exibir nome, foto, etc.)
+        binding.userEmailTextView.text = "Bem-vindo, ${usuario.email}"
+    }
+
+    private fun redirecionarParaLogin() {
+        val intent = Intent(this, Login::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun showLogoutDialog() {
@@ -64,16 +81,13 @@ class MenuPrincipal : AppCompatActivity() {
             .setMessage("Tem certeza de que deseja sair?")
             .setPositiveButton("Sim") { _, _ ->
                 auth.signOut()
-                val intent = Intent(this, Login::class.java)
-                startActivity(intent)
-                finish()
+                redirecionarParaLogin()
             }
             .setNegativeButton("Cancelar", null)
             .show()
     }
 
     private fun irTelaPerfilJogador() {
-        val intent = Intent(this, PerfilDoJogador::class.java)
-        startActivity(intent)
+        startActivity(Intent(this, PerfilDoJogador::class.java))
     }
 }

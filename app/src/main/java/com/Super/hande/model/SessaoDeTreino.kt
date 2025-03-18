@@ -1,8 +1,8 @@
 package com.Super.hande.model
 
-class SessaoDeTreino {
-    val date: String = ""
-    val precision: Int = 0
-    val speed: Double = 0.0
-    val goals: Int = 0
-}
+data class SessaoDeTreino(
+    val data: String = "",
+    val gols: String = 0.toString(),
+    val precisao: String = 0.toString(),
+    val velocidade: String = 0.toString()
+)

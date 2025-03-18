@@ -7,20 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.Super.hande.adapter.AdapterHistorico
 import com.Super.hande.databinding.ActivityHistoricoDeTreinoBinding
 import com.Super.hande.model.SessaoDeTreino
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 
 class HistoricoDeTreino : AppCompatActivity() {
 
     private lateinit var binding: ActivityHistoricoDeTreinoBinding
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AdapterHistorico
-    private lateinit var treinoList: MutableList<SessaoDeTreino>
+    private lateinit var adapterHistorico: AdapterHistorico
+    private val treinoList: MutableList<SessaoDeTreino> = mutableListOf()
     private lateinit var db: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,15 +35,29 @@ class HistoricoDeTreino : AppCompatActivity() {
             insets
         }
 
-        recyclerView = findViewById(R.id.recyclerViewHistory)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        // **Adiciona dados manuais para teste**
+        adicionarDadosManuais()
 
-        treinoList = mutableListOf()
-        adapter = AdapterHistorico(treinoList)
-        recyclerView.adapter = adapter
 
-        // Conectar ao Firebase para buscar os treinos salvos
-        db = FirebaseDatabase.getInstance().getReference("historicoTreinos")
+        // Inicializa Firebase Auth
+        auth = FirebaseAuth.getInstance()
+
+        // Obtém o ID do usuário autenticado
+        val userId = auth.currentUser?.uid
+        if (userId == null) {
+            Toast.makeText(this, "Erro: Usuário não autenticado.", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        // Configuração do RecyclerView
+        binding.recyclerViewHistory.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewHistory.setHasFixedSize(true)
+        adapterHistorico = AdapterHistorico(this, treinoList)
+        binding.recyclerViewHistory.adapter = adapterHistorico
+
+        // Referência ao Firebase Database
+        db = FirebaseDatabase.getInstance().getReference("usuarios").child(userId).child("historico")
 
         db.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -51,16 +65,22 @@ class HistoricoDeTreino : AppCompatActivity() {
                 for (treinoSnapshot in snapshot.children) {
                     val treino = treinoSnapshot.getValue(SessaoDeTreino::class.java)
                     if (treino != null) {
-                        treinoList.add(0, treino) // Adiciona no início para manter a ordem cronológica
+                        treinoList.add(treino)
                     }
                 }
-                adapter.notifyDataSetChanged()
+                treinoList.reverse() // Mostra os treinos mais recentes primeiro
+                adapterHistorico.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext, "Erro ao acessar Firebase", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Erro ao acessar Firebase: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
+    private fun adicionarDadosManuais() {
+        treinoList.add(SessaoDeTreino("Treino de Força", "2025-03-15", "45 minutos", "Intensidade alta"))
+        treinoList.add(SessaoDeTreino("Treino Cardio", "2025-03-14", "30 minutos", "Corrida moderada"))
+        treinoList.add(SessaoDeTreino("Treino de Resistência", "2025-03-13", "40 minutos", "Treino funcional"))
     }
+}

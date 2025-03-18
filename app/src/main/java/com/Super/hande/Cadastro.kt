@@ -36,24 +36,18 @@ class Cadastro : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
         binding.btnSalvarCadastro.setOnClickListener {
             val nome = binding.etNome.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
             val senha = binding.etSenha.text.toString().trim()
             val confirmarSenha = binding.etConfirmarSenha.text.toString().trim()
 
-            if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()) {
-                Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
-            } else if (senha != confirmarSenha) {
-                Toast.makeText(this, "As senhas não coincidem!", Toast.LENGTH_SHORT).show()
-            } else {
-                registrarUsuario(nome, email, senha)
+            when {
+                nome.isEmpty() || email.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty() ->
+                    Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
+                senha != confirmarSenha ->
+                    Toast.makeText(this, "As senhas não coincidem!", Toast.LENGTH_SHORT).show()
+                else -> registrarUsuario(nome, email, senha)
             }
         }
     }
@@ -62,25 +56,34 @@ class Cadastro : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, senha)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid ?: ""
-                    val usuario = hashMapOf(
-                        "id" to userId,
-                        "nome" to nome,
-                        "email" to email
-                    )
+                    val userId = auth.currentUser?.uid
+                    if (userId != null) {
+                        val usuario = hashMapOf(
+                            "id" to userId,
+                            "nome" to nome,
+                            "email" to email
+                        )
 
-                    db.collection("usuarios").document(userId).set(usuario)
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this, Login::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this, "Erro ao salvar dados!", Toast.LENGTH_SHORT).show()
-                        }
+                        db.collection("usuarios").document(userId).set(usuario)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this, Login::class.java))
+                                finish()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this, "Erro ao salvar dados no banco!", Toast.LENGTH_SHORT).show()
+                            }
+                    } else {
+                        Toast.makeText(this, "Erro ao obter ID do usuário!", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
-                    Toast.makeText(this, "Erro ao cadastrar: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                    val erro = task.exception?.message ?: "Erro desconhecido"
+                    when {
+                        erro.contains("email address is already in use", ignoreCase = true) ->
+                            Toast.makeText(this, "Este e-mail já está cadastrado!", Toast.LENGTH_SHORT).show()
+                        else ->
+                            Toast.makeText(this, "Erro ao cadastrar: $erro", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
     }

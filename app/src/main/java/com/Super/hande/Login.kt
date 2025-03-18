@@ -36,14 +36,10 @@ class Login : AppCompatActivity() {
         // Inicializa o Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        // Inicializa os elementos da interface
-        val emailInput = binding.emailInput.text
-        val passwordInput = binding.passwordInput.text
-
         // Configura o listener para o botão de login
-       binding.loginButton.setOnClickListener {
-            val email = emailInput.toString().trim()
-            val password = passwordInput.toString().trim()
+        binding.loginButton.setOnClickListener {
+            val email = binding.emailInput.text.toString().trim()
+            val password = binding.passwordInput.text.toString().trim()
 
             // Valida se os campos estão preenchidos
             if (email.isEmpty() || password.isEmpty()) {
@@ -69,8 +65,7 @@ class Login : AppCompatActivity() {
         }
 
         // Configura o listener para o texto de cadastro
-       binding.registerText.setOnClickListener {
-            //mudar o "Login" para a "Cadastro"
+        binding.registerText.setOnClickListener {
             startActivity(Intent(this, Cadastro::class.java))  // Navega para a tela de cadastro
         }
     }
