@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ModoDeTreino"
-    android:background="@color/white"
+    android:background="@drawable/quadra"
     android:gravity="center"
     android:id="@+id/main">
 
@@ -46,6 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TREINO DE PRECISÃO"
+                        android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -80,6 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TREINO DE VELOCIDADE"
+                        android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -114,6 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="TREINO DE RESISTÊNCIA"
+                        android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -148,6 +151,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="VOLTAR"
+                        android:fontFamily="@font/roboto_medium"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />

@@ -7,13 +7,16 @@
     android:padding="16dp"
     android:gravity="center"
     android:id="@+id/main"
+    android:background="@drawable/trave"
     tools:context=".TreinoDePrecisao">
 
     <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Treino de Precisão"
         android:id="@+id/precisionValue"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         android:paddingBottom="16dp" />
