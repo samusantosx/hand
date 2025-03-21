@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="24dp"
-    android:background="@color/white">
+    android:background="@drawable/quadra">
 
     <!-- Logo -->
     <ImageView
