@@ -9,22 +9,16 @@
     android:gravity="center"
     android:id="@+id/main"
     tools:context=".MenuPrincipal"
-    android:background="@drawable/quadra">
+    android:background="@color/bege_claro">
 
     <TextView
         android:id="@+id/userEmailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="nome"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Menu Principal"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:paddingBottom="16dp"
-        android:textColor="@color/white"/>
+        android:text="Nome"
+        android:textColor="@color/roxo"
+        android:layout_marginBottom="25sp"
+        android:fontFamily="@font/roboto_bold"/>
 
     <GridLayout
         android:layout_width="match_parent"
@@ -43,7 +37,7 @@
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            android:backgroundTint="@color/white">
+            android:backgroundTint="@color/laranja">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,10 +52,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MODO TREINO"
+                    android:text="Modo Treino"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -76,7 +71,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/laranja">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -91,10 +87,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PERFORMANCE"
+                    android:text="Performance"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -109,7 +107,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/laranja">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -124,11 +123,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PERFIL \nDO\n JOGADOR"
+                    android:text="Prfil \ndo\n Jogador"
                     android:textAlignment="center"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -176,7 +177,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/laranja">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -194,7 +196,9 @@
                     android:text="HISTÓRICO"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
