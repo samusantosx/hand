@@ -5,18 +5,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="24dp"
-    android:background="@color/white">
+    android:background="@color/roxo">
 
-    <!-- Logo -->
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/handlogo"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:src="@drawable/jogador1"
+        android:contentDescription="Logo"
+        android:layout_marginTop="35dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/fundo02">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
         android:contentDescription="Logo"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="25dp"
+        android:layout_marginTop="35dp"
+        android:textSize="35sp"
+        android:textColor="@color/roxo"
+        android:fontFamily="@font/roboto_bold"
+        android:textStyle="bold"
+        android:textFontWeight="700"/>
 
     <!-- Campo de Email -->
     <EditText
@@ -25,12 +43,14 @@
         android:layout_height="wrap_content"
         android:hint="E-mail"
         android:padding="12dp"
-        android:background="@android:drawable/edit_text"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_light"
+        android:background="@drawable/bg_fundo3"
+        android:textColor="@color/roxo"
+        android:textColorHint="@color/roxo"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"/>
+        android:layout_marginRight="25dp"
+        android:fontFamily="@font/roboto_bold"
+        android:inputType="textEmailAddress"/>
 
     <!-- Campo de Senha -->
     <EditText
@@ -39,13 +59,14 @@
         android:layout_height="wrap_content"
         android:hint="Senha"
         android:padding="12dp"
-        android:background="@android:drawable/edit_text"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray_light"
+        android:background="@drawable/bg_fundo3"
+        android:textColor="@color/roxo"
+        android:textColorHint="@color/roxo"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"/>
+        android:layout_marginRight="25dp"
+        android:fontFamily="@font/roboto_bold"/>
 
     <!-- Botão de Login -->
 
@@ -53,7 +74,7 @@
         android:id="@+id/loginButton"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:background="@drawable/bg_btn1"
+        android:background="@drawable/bg_fundo2"
         android:text="Entrar"
         android:textColor="@color/white"
         android:layout_marginBottom="8dp"
@@ -61,7 +82,8 @@
         android:layout_marginRight="25dp"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:fontFamily="@font/roboto_bold"/>
 
     <!-- Botão de Criar Conta -->
     <TextView
@@ -69,11 +91,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Criar nova conta"
-        android:textColor="@color/purple_500"
-        android:textSize="16sp"
+        android:textColor="@color/roxo"
+        android:textSize="20sp"
         android:layout_gravity="center_horizontal"
         android:padding="15dp"
         android:clickable="true"
         android:focusable="true"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_bold"/>
+    </LinearLayout>
+
 </LinearLayout>

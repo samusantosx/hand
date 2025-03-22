@@ -1,6 +1,8 @@
 package com.Super.hande
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -30,6 +32,9 @@ class TreinoDePrecisao : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+
         goalOverlayView = binding.goalOverlayView
 
         // Conectar ao Firebase para receber os dados de performance (gols, precisão e velocidade)

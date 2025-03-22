@@ -19,18 +19,22 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="16dp"
+        android:shadowColor="#000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="6"/>
 
 
 
     <FrameLayout
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="300dp">  <!-- Defina um tamanho adequado -->
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/goal"
+            android:src="@drawable/travehandbol"
             android:scaleType="fitXY" />
 
         <com.Super.hande.GoalOverlayView

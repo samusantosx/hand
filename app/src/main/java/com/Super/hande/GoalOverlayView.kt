@@ -35,17 +35,17 @@ class GoalOverlayView @JvmOverloads constructor(
         // Desenha os pontos iniciais em vermelho
         paint.color = Color.RED
         pontos.forEach { (x, y) ->
-            canvas.drawCircle(x, y, 20f, paint)
+            canvas.drawCircle(x, y, 40f, paint)
         }
 
         // Desenha os pontos acertados em verde
         paint.color = Color.GREEN
         acertos.forEach { (x, y) ->
-            canvas.drawCircle(x, y, 25f, paint)
+            canvas.drawCircle(x, y, 45f, paint)
         }
     }
 
-    // Método para atualizar pontos acertados
+    // Metodo para atualizar pontos acertados
     fun atualizarPontos(acertosNovos: List<Pair<Float, Float>>) {
         acertos = acertosNovos.toMutableList()
         invalidate() // Redesenha a tela
