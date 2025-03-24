@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/roxo">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,8 +15,40 @@
         android:text="Treino de Resistência"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:paddingBottom="16dp" />
+        android:textColor="@color/white"
+        android:paddingBottom="16dp"
+        android:fontFamily="@font/roboto_bold"/>
 
+    <!-- Exibição da Resistência Física -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resistência Física:"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:paddingBottom="8dp"
+        android:fontFamily="@font/roboto_bold"/>
+
+    <TextView
+        android:id="@+id/tvTempoTreino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tempo médio de treino: -- min"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:paddingBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvDesgaste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desgaste: --%"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:paddingBottom="8dp"/>
+
+    <!-- Exibição dos gols por minuto -->
     <TextView
         android:id="@+id/goalsValue"
         android:layout_width="wrap_content"
@@ -21,13 +56,21 @@
         android:text="Gols por minuto: --"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:paddingBottom="8dp" />
+        android:textColor="@color/white"
+        android:paddingBottom="8dp"/>
 
-    <Button
+    <!-- Botão de voltar -->
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnVoltar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_fundo2"
         android:text="Voltar ao Menu"
-        android:padding="10dp"
-        android:layout_marginTop="16dp"/>
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/roboto_bold"/>
 </LinearLayout>

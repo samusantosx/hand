@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/roxo"
+    android:id="@+id/main"
+    tools:context=".model.InformacoesPessoais">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        android:background="@drawable/fundo02">
+
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:src="@drawable/jogador1"
+            android:contentDescription="Logo"
+            android:layout_marginTop="35dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informações do Jogador"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="45dp"
+            android:textSize="30sp"
+            android:textColor="@color/roxo"
+            android:fontFamily="@font/roboto_bold"
+            android:textStyle="bold"/>
+
+        <!-- Idade -->
+        <EditText
+            android:id="@+id/etIdade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_fundo3"
+            android:hint="Idade"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="@color/roxo"
+            android:textColorHint="@color/roxo"
+            android:fontFamily="@font/roboto_bold"/>
+
+        <!-- Altura -->
+        <EditText
+            android:id="@+id/etAltura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_fundo3"
+            android:hint="Altura (cm)"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:textColor="@color/roxo"
+            android:textColorHint="@color/roxo"
+            android:fontFamily="@font/roboto_bold"/>
+
+        <!-- Peso -->
+        <EditText
+            android:id="@+id/etPeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_fundo3"
+            android:hint="Peso (kg)"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:textColor="@color/roxo"
+            android:textColorHint="@color/roxo"
+            android:fontFamily="@font/roboto_bold"/>
+
+        <!-- Mão Dominante -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mão Dominante"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:textColor="@color/roxo"
+            android:fontFamily="@font/roboto_bold"/>
+
+        <RadioGroup
+            android:id="@+id/rgMaoDominante"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbDestro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Destro"
+                android:textColor="@color/roxo"/>
+
+            <RadioButton
+                android:id="@+id/rbCanhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Canhoto"
+                android:textColor="@color/roxo"/>
+
+            <RadioButton
+                android:id="@+id/rbAmbidestro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ambidestro"
+                android:textColor="@color/roxo"/>
+        </RadioGroup>
+
+        <!-- Posição em Quadra -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Posição em Quadra:"
+            android:textSize="18sp"
+            android:textColor="@color/roxo"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto_bold"/>
+
+        <RadioGroup
+            android:id="@+id/rgPosicaoQuadra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbPonta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ponta"
+                android:textColor="@color/roxo"/>
+
+            <RadioButton
+                android:id="@+id/rbArmador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Armador"
+                android:textColor="@color/roxo"/>
+
+            <RadioButton
+                android:id="@+id/rbPivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pivô"
+                android:textColor="@color/roxo"/>
+
+            <RadioButton
+                android:id="@+id/rbLateral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lateral"
+                android:textColor="@color/roxo"/>
+        </RadioGroup>
+
+        <!-- Botão Salvar -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_fundo2"
+            android:text="Salvar"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"/>
+    </LinearLayout>
+
+</ScrollView>
