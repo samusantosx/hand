@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Hande"
         tools:targetApi="31">
         <activity
+            android:name=".model.AvaliacaoDesgaste"
+            android:exported="false" />
+        <activity
             android:name=".model.InformacoesPessoais"
             android:exported="false" />
         <activity

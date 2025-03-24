@@ -7,8 +7,10 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="@color/roxo">
+    android:background="@color/roxo"
+    tools:context=".TreinoDeResistencia">
 
+    <!-- Título -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,13 +25,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Resistência Física:"
+        android:text="Resistência Física"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:paddingBottom="8dp"
         android:fontFamily="@font/roboto_bold"/>
 
+    <!-- Tempo Médio de Treino -->
     <TextView
         android:id="@+id/tvTempoTreino"
         android:layout_width="wrap_content"
@@ -39,6 +42,7 @@
         android:textColor="@color/white"
         android:paddingBottom="4dp"/>
 
+    <!-- Desgaste Físico -->
     <TextView
         android:id="@+id/tvDesgaste"
         android:layout_width="wrap_content"
@@ -59,12 +63,27 @@
         android:textColor="@color/white"
         android:paddingBottom="8dp"/>
 
-    <!-- Botão de voltar -->
+    <!-- Botão de Finalizar Treino -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnFinalizarTreino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_fundo2"
+        android:text="Finalizar Treino"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/roboto_bold"/>
+
+    <!-- Botão de Voltar ao Menu -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnVoltar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/bg_fundo2"
         android:text="Voltar ao Menu"
         android:textAlignment="center"
