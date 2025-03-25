@@ -24,7 +24,7 @@
             android:name=".model.AvaliacaoDesgaste"
             android:exported="false" />
         <activity
-            android:name=".model.InformacoesPessoais"
+            android:name=".InformacoesPessoais"
             android:exported="false" />
         <activity
             android:name=".MenuPrincipal"

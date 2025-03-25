@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityMenuPrincipalBinding
@@ -16,6 +17,7 @@ class MenuPrincipal : AppCompatActivity() {
     private lateinit var binding: ActivityMenuPrincipalBinding
     private lateinit var auth: FirebaseAuth
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +25,8 @@ class MenuPrincipal : AppCompatActivity() {
         // Infla o layout usando ViewBinding
         binding = ActivityMenuPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         // Configura o listener para aplicar os insets (barras do sistema)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -41,7 +45,7 @@ class MenuPrincipal : AppCompatActivity() {
         } else {
             carregarDadosUsuario(usuarioAtual)
         }
-
+/*
         // Configura os listeners dos botões
         binding.btnPlayerProfile.setOnClickListener {
             irTelaPerfilJogador()
@@ -62,6 +66,8 @@ class MenuPrincipal : AppCompatActivity() {
         binding.logoutButton.setOnClickListener {
             showLogoutDialog()
         }
+        
+ */
     }
 
     private fun carregarDadosUsuario(usuario: FirebaseUser) {

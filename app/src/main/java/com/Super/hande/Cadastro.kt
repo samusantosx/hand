@@ -67,8 +67,12 @@ class Cadastro : AppCompatActivity() {
                         db.collection("usuarios").document(userId).set(usuario)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
-                                startActivity(Intent(this, Login::class.java))
-                                finish()
+
+                                // Redirecionar para a tela de Informações Pessoais
+                                val intent = Intent(this, InformacoesPessoais::class.java)
+                                intent.putExtra("USER_ID", userId) // Enviar o ID do usuário para a próxima tela
+                                startActivity(intent)
+                                finish() // Fecha a tela de cadastro
                             }
                             .addOnFailureListener {
                                 Toast.makeText(this, "Erro ao salvar dados no banco!", Toast.LENGTH_SHORT).show()
@@ -87,4 +91,5 @@ class Cadastro : AppCompatActivity() {
                 }
             }
     }
+
 }

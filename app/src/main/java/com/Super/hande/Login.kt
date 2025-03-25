@@ -1,6 +1,7 @@
 package com.Super.hande
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -21,6 +22,9 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        supportActionBar?.hide()
+        window.statusBarColor = Color.parseColor("#440031")
 
         // Define o layout da atividade
         binding = ActivityLoginBinding.inflate(layoutInflater)

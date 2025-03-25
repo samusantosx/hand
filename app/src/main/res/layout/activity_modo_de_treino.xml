@@ -5,9 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ModoDeTreino"
-    android:background="@drawable/quadra"
-    android:gravity="center"
+    android:background="@color/bege_claro"
+    android:orientation="vertical"
     android:id="@+id/main">
+
+    <!-- Toolbar fixada no topo -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/bege_claro"
+            android:title="Menu Principal"
+            android:titleTextColor="@color/roxo"
+            app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            app:navigationIcon="@drawable/ic_voltar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Adicione um espaço entre a Toolbar e o conteúdo -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="150dp" />
 
 
         <GridLayout
@@ -27,7 +51,7 @@
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/laranja"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 
@@ -45,11 +69,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TREINO DE PRECISÃO"
-                        android:fontFamily="@font/roboto_medium"
-                        android:textColor="@color/black"
+                        android:text="Teino de Precisão"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textAllCaps="false"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -62,7 +86,7 @@
                 android:layout_column="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/laranja"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 
@@ -80,11 +104,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TREINO DE VELOCIDADE"
-                        android:fontFamily="@font/roboto_medium"
-                        android:textColor="@color/black"
+                        android:text="Treino de Velociade"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textAllCaps="false"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -97,7 +121,7 @@
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/laranja"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 
@@ -115,11 +139,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TREINO DE RESISTÊNCIA"
-                        android:fontFamily="@font/roboto_medium"
-                        android:textColor="@color/black"
+                        android:text="Treino de Resistência"
                         android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textAllCaps="false"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -132,7 +157,7 @@
                 android:layout_column="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="8dp"
-                android:backgroundTint="@android:color/white"
+                android:backgroundTint="@color/laranja"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp">
 

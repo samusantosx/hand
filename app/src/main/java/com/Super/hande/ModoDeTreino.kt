@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityModoDeTreinoBinding
@@ -28,6 +29,19 @@ class ModoDeTreino : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Menu Principal"  // Define o título manualmente
+
+        // Habilita o botão de voltar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_voltar) // Ícone de voltar
+
+        // Ação do botão de voltar
+        toolbar.setNavigationOnClickListener {
+            onBackPressed() // Fecha a atividade e volta para a anterior
+        }
+
 
         // Navega para Treino de Precisão
         binding.precisionTrainingButton.setOnClickListener {

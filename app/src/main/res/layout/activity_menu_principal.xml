@@ -5,21 +5,122 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="16dp"
     android:gravity="center"
     android:id="@+id/main"
     tools:context=".MenuPrincipal"
-    android:background="@color/bege_claro">
+    android:background="@color/roxo">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/ic_user"/>
 
     <TextView
         android:id="@+id/userEmailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome"
-        android:textColor="@color/roxo"
-        android:layout_marginBottom="25sp"
-        android:fontFamily="@font/roboto_bold"/>
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Idade"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/txtIdadeJogador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        android:textSize="15sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Altura"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/txtAlturaJogador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0,0"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        android:textSize="15sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peso"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/txtPesoJogador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0,0"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        android:textSize="15sp"/>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/bg_fundo1"
+        android:layout_marginTop="65dp">
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/bg_fundo4"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_modo_treino"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modo de Treino"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/bg_fundo4"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_history"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Histórico"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+
+<!--
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="350dp"
@@ -163,7 +264,6 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -204,5 +304,8 @@
         </androidx.cardview.widget.CardView>
 
     </GridLayout>
+    -->
+    </LinearLayout>
+
 
 </LinearLayout>
