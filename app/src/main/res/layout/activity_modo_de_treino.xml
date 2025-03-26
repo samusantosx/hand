@@ -38,9 +38,8 @@
         android:background="@color/bege_claro"
         android:padding="16dp">
 
-        <!-- Treino de Precisão -->
 
-        <!-- Treino de Velocidade -->
+
         <LinearLayout
             android:id="@+id/precisionTrainingButton"
             android:layout_width="160dp"

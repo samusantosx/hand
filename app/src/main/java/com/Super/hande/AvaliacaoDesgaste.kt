@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.Super.hande.databinding.ActivityAvaliacaoDesgasteBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class AvaliacaoDesgaste : AppCompatActivity() {
 
@@ -17,25 +19,18 @@ class AvaliacaoDesgaste : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
 
-        // Infla o layout usando ViewBinding
+        // Infla o layout com ViewBinding
         binding = ActivityAvaliacaoDesgasteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Conectar ao Firebase para salvar os dados do treino
-        db = FirebaseDatabase.getInstance().getReference("treinoResistencia")
+        // Conecta ao Firebase
+        db = FirebaseDatabase.getInstance().getReference("avaliacoesDesgaste")
 
-        // Configuração do SeekBar para autoavaliação do desgaste
+        // Configuração do SeekBar
         binding.seekBarDesgaste.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                // Atualiza o texto conforme o jogador move o slider
-                binding.tvResultadoDesgaste.text = when (progress) {
-                    in 1..3 -> "Baixo desgaste"
-                    in 4..6 -> "Médio desgaste"
-                    in 7..10 -> "Alto desgaste"
-                    else -> "Selecione uma nota"
-                }
+                binding.tvResultadoDesgaste.text = "Nível de desgaste: $progress/10"
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -45,28 +40,27 @@ class AvaliacaoDesgaste : AppCompatActivity() {
         // Botão para salvar avaliação no Firebase
         binding.btnSalvarAvaliacao.setOnClickListener {
             val desgasteNivel = binding.seekBarDesgaste.progress
-            val avaliacao = when (desgasteNivel) {
-                in 1..3 -> "Baixo desgaste"
-                in 4..6 -> "Médio desgaste"
-                in 7..10 -> "Alto desgaste"
-                else -> "Não avaliado"
+
+            if (desgasteNivel == 0) {
+                Toast.makeText(this, "Selecione um nível de desgaste!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-            // Salvar no Firebase
-            val treinoData = mapOf(
-                "tempoTreino" to "30 min",  // Pode ser ajustado conforme a lógica do treino
-                "desgaste" to avaliacao
+            val currentDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+
+            val avaliacaoData = mapOf(
+                "desgasteNivel" to desgasteNivel,
+                "dataHora" to currentDate
             )
 
-            db.child("avaliacaoDesgaste").setValue(treinoData)
+            db.push().setValue(avaliacaoData)
                 .addOnSuccessListener {
-                    Toast.makeText(applicationContext, "Avaliação salva com sucesso!", Toast.LENGTH_SHORT).show()
-                    // Voltar ao Menu após salvar
-                    startActivity(Intent(this@AvaliacaoDesgaste, MenuPrincipal::class.java))
+                    Toast.makeText(this, "Avaliação salva com sucesso!", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this, MenuPrincipal::class.java))
                     finish()
                 }
                 .addOnFailureListener {
-                    Toast.makeText(applicationContext, "Erro ao salvar!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Erro ao salvar avaliação!", Toast.LENGTH_SHORT).show()
                 }
         }
     }

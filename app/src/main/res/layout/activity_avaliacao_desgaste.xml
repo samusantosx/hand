@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="@color/roxo">
+    android:background="@drawable/trave"
+    tools:context=".AvaliacaoDesgaste">
 
+    <!-- Título -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,34 +19,39 @@
         android:textStyle="bold"
         android:textColor="@color/white"
         android:paddingBottom="16dp"
-        android:fontFamily="@font/roboto_bold"/>
+        android:fontFamily="@font/roboto_bold" />
 
+    <!-- Pergunta -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quão cansado você se sente após o treino? (1 a 10)"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:paddingBottom="4dp"/>
+        android:paddingBottom="8dp" />
 
-    <!-- Barra deslizante -->
+    <!-- Barra de Desgaste -->
     <SeekBar
         android:id="@+id/seekBarDesgaste"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="10"
-        android:progress="5"/>
+        android:progress="5"
+        android:thumbTint="@color/white"
+        android:progressTint="@color/white" />
 
+    <!-- Resultado exibido dinamicamente -->
     <TextView
         android:id="@+id/tvResultadoDesgaste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selecione uma nota"
+        android:text="Nível de desgaste: 5/10"
         android:textSize="18sp"
         android:textColor="@color/white"
-        android:paddingTop="8dp"/>
+        android:paddingTop="8dp"
+        android:fontFamily="@font/roboto_bold" />
 
-    <!-- Botão de salvar -->
+    <!-- Botão de salvar avaliação -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSalvarAvaliacao"
         android:layout_width="match_parent"
@@ -55,5 +64,6 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:fontFamily="@font/roboto_bold"/>
+        android:fontFamily="@font/roboto_bold" />
+
 </LinearLayout>

@@ -1,68 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:id="@+id/main"
-    android:gravity="center">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bege_claro"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Desempenho do Jogador"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- Exibição dos dados numéricos -->
-    <TextView
-        android:id="@+id/precisionText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Precisão: --%"
-        android:textSize="18sp"
-        android:padding="8dp"/>
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center"
+        android:id="@+id/main">
 
-    <TextView
-        android:id="@+id/speedText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Velocidade da Bola: -- m/s"
-        android:textSize="18sp"
-        android:padding="8dp"/>
+        <!-- Toolbar fixada no topo -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
 
-    <TextView
-        android:id="@+id/goalsFrequencyText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Frequência de Gols: -- gols/min"
-        android:textSize="18sp"
-        android:padding="8dp"/>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/bege_claro"
+                android:title="Menu Principal"
+                android:titleTextColor="@color/roxo"
+                app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                app:navigationIcon="@drawable/ic_voltar" />
 
-    <!-- Gráficos para visualização -->
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/precisionChart"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/speedChart"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"/>
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desempenho do Jogador"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp"/>
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/goalChart"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"/>
+        <!-- Gráficos para visualização -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:elevation="4dp">
 
-    <Button
-        android:id="@+id/updatePerformanceButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Atualizar Dados"
-        android:layout_marginTop="16dp"/>
-</LinearLayout>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/precisionChart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"/>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/speedChart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/white"/>
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/goalChart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/white" />
+        </LinearLayout>
+
+        <!-- Botão Atualizar -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updatePerformanceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_fundo2"
+            android:text="Atualizar Dados"
+            android:textColor="@color/white"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+</ScrollView>

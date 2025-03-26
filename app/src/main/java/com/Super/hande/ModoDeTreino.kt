@@ -60,10 +60,5 @@ class ModoDeTreino : AppCompatActivity() {
             val intent = Intent(this, TreinoDeResistencia::class.java)
             startActivity(intent)
         }
-
-        // Botão para voltar ao menu principal
-        binding.backButton.setOnClickListener {
-            finish()
-        }
     }
 }

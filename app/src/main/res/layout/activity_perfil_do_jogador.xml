@@ -5,19 +5,38 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bege_claro"
     tools:context=".PerfilDoJogador"
     android:layout_gravity="center">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
+        <!-- Toolbar fixada no topo -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/bege_claro"
+                android:title="Perfil do Jogador"
+                android:titleTextColor="@color/roxo"
+                app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                app:navigationIcon="@drawable/ic_voltar" />
+
+        </com.google.android.material.appbar.AppBarLayout>
         <ImageView
             android:id="@+id/playerImage"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/handlogo"
+            android:src="@drawable/jogador1"
             android:contentDescription="Foto do Jogador"
             android:scaleType="centerCrop"
             android:layout_marginBottom="16dp"/>
@@ -37,6 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Estatísticas"
+
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="16dp"
@@ -68,7 +88,6 @@
                 android:layout_height="wrap_content"
                 android:text="%"
                 android:textColor="@color/black"/>
-
 
         </LinearLayout>
 
