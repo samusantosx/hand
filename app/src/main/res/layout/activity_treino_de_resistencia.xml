@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
@@ -11,86 +10,101 @@
     android:background="@drawable/trave"
     tools:context=".TreinoDeResistencia">
 
-    <!-- Título -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Treino de Resistência"
+        android:id="@+id/precisionValue"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
         android:paddingBottom="16dp"
-        android:fontFamily="@font/roboto_bold"/>
+        android:shadowColor="#000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="6"/>
 
-    <!-- Exibição da Resistência Física -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Resistência Física"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:paddingBottom="8dp"
-        android:fontFamily="@font/roboto_bold"/>
-
-    <!-- Tempo Médio de Treino -->
+    <!-- Cronômetro -->
     <TextView
         android:id="@+id/tvTempoTreino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tempo médio de treino: -- min"
-        android:textSize="18sp"
+        android:text="Tempo: 00:00"
+        android:textSize="20sp"
         android:textColor="@color/white"
-        android:paddingBottom="4dp"/>
+        android:textStyle="bold"
+        android:paddingBottom="16dp"
+        android:shadowColor="#000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="6"/>
 
-    <!-- Desgaste Físico -->
+    <!-- Exibição de Gols por Minuto -->
+    <TextView
+        android:id="@+id/tvGolsPorMinuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gols por Minuto: --"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"
+        android:shadowColor="#000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="6"/>
+
+    <!-- Exibição de Desgaste -->
     <TextView
         android:id="@+id/tvDesgaste"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Desgaste: --%"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textColor="@color/white"
-        android:paddingBottom="8dp"/>
-
-    <!-- Exibição dos gols por minuto -->
-    <TextView
-        android:id="@+id/goalsValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gols por minuto: --"
-        android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:paddingBottom="8dp"/>
+        android:paddingBottom="16dp"
+        android:shadowColor="#000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="6"/>
 
-    <!-- Botão de Finalizar Treino -->
-    <androidx.appcompat.widget.AppCompatButton
+    <FrameLayout
+        android:layout_width="350dp"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/travehandbol"
+            android:scaleType="fitXY" />
+
+        <com.Super.hande.GoalOverlayView
+            android:id="@+id/goalOverlayView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+    <!-- Botão Venalizar Treino -->
+
+    <!-- Botão Voltar ao Menu -->
+    <Button
         android:id="@+id/btnFinalizarTreino"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bg_fundo2"
+        android:backgroundTint="@color/purple_500"
+        android:padding="10dp"
         android:text="Finalizar Treino"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/roboto_bold"/>
+        android:textColor="@color/white" />
 
-    <!-- Botão de Voltar ao Menu -->
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/btnVoltar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/bg_fundo2"
         android:text="Voltar ao Menu"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/roboto_bold"/>
+        android:padding="10dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@color/white"/>
 </LinearLayout>
