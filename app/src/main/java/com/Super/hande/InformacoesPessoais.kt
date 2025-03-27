@@ -36,8 +36,6 @@ class InformacoesPessoais : AppCompatActivity() {
             insets
         }
 
-
-
         // Inicializando Firebase Auth e Firestore
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -56,8 +54,9 @@ class InformacoesPessoais : AppCompatActivity() {
         }
 
         val userId = usuarioAtual.uid
-        val nome = intent.getStringExtra("nome") ?: "Desconhecido"
-        val email = intent.getStringExtra("email") ?: usuarioAtual.email
+        val nome = intent.getStringExtra("nome") ?: usuarioAtual.displayName ?: "Desconhecido"
+        val email = intent.getStringExtra("email") ?: usuarioAtual.email ?: "Sem email"
+
 
         val idade = binding.etIdade.text.toString()
         val altura = binding.etAltura.text.toString()

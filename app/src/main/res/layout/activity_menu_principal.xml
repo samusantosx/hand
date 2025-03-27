@@ -79,6 +79,7 @@
         android:background="@drawable/bg_fundo5"
         android:layout_marginTop="8dp">
 
+        <!--
         <LinearLayout
             android:id="@+id/btnModoTreino"
             android:layout_width="110dp"
@@ -96,7 +97,8 @@
                 android:layout_height="wrap_content"
                 android:text="Modo de Treino"
                 android:fontFamily="@font/roboto"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:layout_marginBottom="5dp"/>
 
         </LinearLayout>
 
@@ -143,15 +145,19 @@
                 android:textColor="@color/white"/>
 
         </LinearLayout>
+        -->
+
+
 
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:id="@+id/botton_navigation"
         android:background="@color/white"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="unlabeled"/>
 
 
 </LinearLayout>

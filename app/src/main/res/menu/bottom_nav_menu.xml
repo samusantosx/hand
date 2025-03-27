@@ -3,8 +3,19 @@
     <item android:id="@+id/home"
         android:title="Home"
         android:icon="@drawable/ic_home"/>
-    <item android:id="@+id/config"
-        android:title="Config"
-        android:icon="@drawable/ic_home"/>
+
+    <item android:id="@+id/modo_treino"
+        android:title="Treino"
+        android:icon="@drawable/ic_modo_treino"
+        android:iconTint="@color/roxo"/>
+
+    <item android:id="@+id/historico"
+        android:title="Histórico"
+        android:icon="@drawable/ic_history"/>
+
+    <item android:id="@+id/desempenho"
+        android:title="Desempenho"
+        android:icon="@drawable/ic_desempenho"/>
+
 
 </menu>

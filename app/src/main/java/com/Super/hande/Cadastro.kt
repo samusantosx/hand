@@ -68,11 +68,12 @@ class Cadastro : AppCompatActivity() {
                             .addOnSuccessListener {
                                 Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
 
-                                // Redirecionar para a tela de Informações Pessoais
+                                // Redirecionar para a tela de Informações Pessoais e passar nome e e-mail
                                 val intent = Intent(this, InformacoesPessoais::class.java)
-                                intent.putExtra("USER_ID", userId) // Enviar o ID do usuário para a próxima tela
+                                intent.putExtra("USER_ID", userId)
+                                intent.putExtra("nome", nome)  // Adicionando o nome
+                                intent.putExtra("email", email) // Adicionando o e-mail
                                 startActivity(intent)
-                                finish() // Fecha a tela de cadastro
                             }
                             .addOnFailureListener {
                                 Toast.makeText(this, "Erro ao salvar dados no banco!", Toast.LENGTH_SHORT).show()

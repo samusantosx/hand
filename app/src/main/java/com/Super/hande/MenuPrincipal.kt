@@ -46,7 +46,7 @@ class MenuPrincipal : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-
+/*
         // Navega para Treino de Precisão
         binding.btnHistorico.setOnClickListener {
             val intent = Intent(this, HistoricoDeTreino::class.java)
@@ -64,6 +64,25 @@ class MenuPrincipal : AppCompatActivity() {
             val intent = Intent(this, PerformanceJogador::class.java)
             startActivity(intent)
         }
+*/
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    startActivity(Intent(this, ModoDeTreino::class.java))
+                    true
+                }
+                R.id.profile -> {
+                    startActivity(Intent(this, Desem::class.java))
+                    true
+                }
+                R.id.settings -> {
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Buscar e exibir os dados do usuário
         carregarDadosDoUsuario()
@@ -74,13 +93,15 @@ class MenuPrincipal : AppCompatActivity() {
         if (user != null) {
             val userId = user.uid  // Obtém o ID do usuário autenticado
 
-            db.collection("Usuarios").document(userId).get()
+            // Carregar dados do usuário no Firestore
+            db.collection("usuarios").document(userId).get()
                 .addOnSuccessListener { document ->
                     if (document != null && document.exists()) {
-                        binding.userEmailTextView.text = document.getString("nome")
-                        binding.txtIdadeJogador.text = document.getString("idade")
-                        binding.txtAlturaJogador.text = document.getString("altura")
-                        binding.txtPesoJogador.text = document.getString("peso")
+                        // Exibindo as informações no layout
+                        binding.userEmailTextView.text = document.getString("nome") ?: "Nome não encontrado"
+                        binding.txtIdadeJogador.text = document.getString("idade") ?: "Idade não informada"
+                        binding.txtAlturaJogador.text = document.getString("altura") ?: "Altura não informada"
+                        binding.txtPesoJogador.text = document.getString("peso") ?: "Peso não informado"
                     } else {
                         Toast.makeText(this, "Usuário não encontrado!", Toast.LENGTH_SHORT).show()
                     }
