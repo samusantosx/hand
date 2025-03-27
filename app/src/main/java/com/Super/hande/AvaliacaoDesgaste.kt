@@ -27,7 +27,7 @@ class AvaliacaoDesgaste : AppCompatActivity() {
         setContentView(binding.root)
 
         // Conecta ao Firebase
-        db = FirebaseDatabase.getInstance().getReference("avaliacoesDesgaste")
+        db = FirebaseDatabase.getInstance().getReference("avaliacaoDesgaste")
 
         // Configuração do SeekBar
         binding.seekBarDesgaste.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -57,11 +57,15 @@ class AvaliacaoDesgaste : AppCompatActivity() {
             "dataHora" to currentDate
         )
 
+        // Salva no Firebase e também define o último desgaste
+        db.child("ultimoDesgaste").setValue(desgasteNivel)
         db.push().setValue(avaliacaoData)
             .addOnSuccessListener {
                 Log.d("Firebase", "Avaliação de desgaste salva!")
                 Toast.makeText(this, "Avaliação salva com sucesso!", Toast.LENGTH_SHORT).show()
-                irParaMenu()
+
+                // Envia o desgaste de volta para a tela de Treino
+                irParaTreino(desgasteNivel)
             }
             .addOnFailureListener { e ->
                 Log.e("Firebase", "Erro ao salvar avaliação: ${e.message}")
@@ -70,8 +74,10 @@ class AvaliacaoDesgaste : AppCompatActivity() {
             }
     }
 
-    private fun irParaMenu() {
-        startActivity(Intent(this, MenuPrincipal::class.java))
+    private fun irParaTreino(desgaste: Int) {
+        val intent = Intent(this, TreinoDeResistencia::class.java)
+        intent.putExtra("desgaste", desgaste.toDouble())  // Passa o desgaste para a tela de treino
+        startActivity(intent)
         finish()
     }
 }

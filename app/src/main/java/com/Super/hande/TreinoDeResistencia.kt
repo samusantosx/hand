@@ -2,42 +2,66 @@ package com.Super.hande
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.os.SystemClock
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.Super.hande.databinding.ActivityTreinoDeResistenciaBinding
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlin.math.max
 
 class TreinoDeResistencia : AppCompatActivity() {
 
     private lateinit var binding: ActivityTreinoDeResistenciaBinding
+    private lateinit var db: DatabaseReference
     private var startTime: Long = 0
     private var tempoTotalTreino: Int = 0
     private var intensidadeTreino: Int = (5..10).random()
     private var golsMarcados = 0
+    private var desgasteRecebido: Double = 0.0
+
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTreinoDeResistenciaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inicia o cronômetro
+        // Conectar ao Firebase
+        db = FirebaseDatabase.getInstance().getReference("treinoResistencia")
+
+        // Iniciar o cronômetro
         startTime = SystemClock.elapsedRealtime()
 
-        // Exibe gols por minuto
-        binding.goalsValue.text = "Gols por minuto: ${calcularGolsPorMinuto()}"
+        // Verifica se há um nível de desgaste vindo da Avaliação de Desgaste
+        desgasteRecebido = intent.getDoubleExtra("desgaste", 0.0)
+        binding.tvDesgaste.text = "Desgaste: $desgasteRecebido/10"
 
-        // Botão de voltar apenas fecha a tela
+        // Atualiza a exibição do tempo de treino dinamicamente
+        atualizarTempoTreino()
+
+        // Botão de voltar
         binding.btnVoltar.setOnClickListener {
             finish()
         }
 
-        // Botão de finalizar treino → Redireciona para Avaliação de Desgaste
+        // Botão para finalizar treino
         binding.btnFinalizarTreino.setOnClickListener {
             finalizarTreino()
         }
+    }
+
+    private fun atualizarTempoTreino() {
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                tempoTotalTreino = ((SystemClock.elapsedRealtime() - startTime) / 1000 / 60).toInt()
+                binding.tvTempoTreino.text = "Tempo médio de treino: $tempoTotalTreino min"
+                handler.postDelayed(this, 1000) // Atualiza a cada segundo
+            }
+        }, 0)
     }
 
     private fun finalizarTreino() {
@@ -48,16 +72,11 @@ class TreinoDeResistencia : AppCompatActivity() {
         salvarNoFirebase(tempoTotalTreino, golsMarcados, desgaste)
     }
 
-    private fun calcularGolsPorMinuto(): Double {
-        return if (tempoTotalTreino > 0) golsMarcados.toDouble() / tempoTotalTreino else 0.0
-    }
-
     private fun calcularDesgaste(tempoTreino: Int, intensidade: Int): Double {
         return max(0.0, (tempoTreino * intensidade * 0.5))
     }
 
     private fun salvarNoFirebase(tempoTreino: Int, gols: Int, desgaste: Double) {
-        val db = FirebaseDatabase.getInstance().getReference("treinoResistencia")
         val treinoData = mapOf(
             "tempoTreino" to tempoTreino,
             "golsFeitos" to gols,
@@ -71,6 +90,7 @@ class TreinoDeResistencia : AppCompatActivity() {
 
                 // Redireciona para Avaliação de Desgaste
                 val intent = Intent(this@TreinoDeResistencia, AvaliacaoDesgaste::class.java)
+                intent.putExtra("tempoTreino", tempoTotalTreino)
                 startActivity(intent)
                 finish()
             }
