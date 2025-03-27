@@ -23,6 +23,7 @@ class TreinoDeResistencia : AppCompatActivity() {
     private var desgasteRecebido: Double = 0.0
     private var tempoTreinoSalvo: Int = 0
     private var treinoFinalizado = false
+    private var cronometroEmExecucao = false  // Variável para controlar o estado do cronômetro
 
     private val handler = Handler(Looper.getMainLooper())
     private val updateRunnable = object : Runnable {
@@ -54,6 +55,7 @@ class TreinoDeResistencia : AppCompatActivity() {
             tempoTreinoSalvo = 0
             startTime = SystemClock.elapsedRealtime()
             treinoFinalizado = false
+            cronometroEmExecucao = true  // Inicia o cronômetro
         } else {
             recuperarTempoSalvo()
         }
@@ -73,15 +75,17 @@ class TreinoDeResistencia : AppCompatActivity() {
         startTime = SystemClock.elapsedRealtime()
         treinoFinalizado = false
         golsMarcados = 0
+        cronometroEmExecucao = true  // Inicia o cronômetro quando um novo treino é resetado
     }
 
     override fun onResume() {
         super.onResume()
-        if (!treinoFinalizado) {
+        if (!treinoFinalizado && !cronometroEmExecucao) {
+            cronometroEmExecucao = true
             if (startTime == 0L) {
                 startTime = SystemClock.elapsedRealtime() - tempoTreinoSalvo * 1000L
             }
-            handler.post(updateRunnable)
+            handler.post(updateRunnable)  // Inicia a atualização do cronômetro
         }
     }
 
@@ -90,7 +94,7 @@ class TreinoDeResistencia : AppCompatActivity() {
         if (!treinoFinalizado) {
             val tempoAtual = ((SystemClock.elapsedRealtime() - startTime) / 1000).toInt()
             tempoTreinoSalvo += tempoAtual
-            handler.removeCallbacks(updateRunnable)
+            handler.removeCallbacks(updateRunnable)  // Remove a atualização do cronômetro
         }
     }
 
@@ -121,6 +125,7 @@ class TreinoDeResistencia : AppCompatActivity() {
 
     private fun finalizarTreino() {
         treinoFinalizado = true
+        cronometroEmExecucao = false  // Pausa o cronômetro quando o treino for finalizado
         val tempoAtual = ((SystemClock.elapsedRealtime() - startTime) / 1000).toInt()
         tempoTotalTreino = tempoTreinoSalvo + tempoAtual
         val desgaste = calcularDesgaste(tempoTotalTreino / 60, intensidadeTreino)

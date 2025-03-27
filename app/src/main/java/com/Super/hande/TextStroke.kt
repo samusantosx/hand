@@ -13,6 +13,7 @@ class TextStroke @JvmOverloads constructor(
 
     private val text = "Treino de Precisão"
 
+
     private val strokePaint = Paint().apply {
         color = Color.BLACK  // Cor da borda
         textSize = 80f
