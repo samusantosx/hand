@@ -1,18 +1,16 @@
 package com.Super.hande.adapter
 
-
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.Super.hande.databinding.HistoricoItemBinding
 import com.Super.hande.model.SessaoDeTreino
 
-
-class AdapterHistorico(private val context: Context, private val listaHistorico: MutableList<SessaoDeTreino>):
-    RecyclerView.Adapter<AdapterHistorico.HistoricoTreinoViewHolder>() {
-
+class AdapterHistorico(
+    private val context: Context,
+    private val listaHistorico: MutableList<SessaoDeTreino>
+) : RecyclerView.Adapter<AdapterHistorico.HistoricoTreinoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoricoTreinoViewHolder {
         val itemLista = HistoricoItemBinding.inflate(LayoutInflater.from(context), parent, false)
@@ -36,5 +34,4 @@ class AdapterHistorico(private val context: Context, private val listaHistorico:
         val txtPrecisao = binding.txtTipoTreinoPrecisaoHistorico
         val txtVelocidade = binding.txtTipoTreinoHistorico
     }
-
 }

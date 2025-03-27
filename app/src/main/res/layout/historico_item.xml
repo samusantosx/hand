@@ -22,12 +22,11 @@
             android:textStyle="bold"
             android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/txtData_historico"
+            android:id="@+id/txtDataHistorico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00/00/0000"
             android:textColor="@color/black"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -42,7 +41,7 @@
             android:textStyle="bold"
             android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/txtTipoTreino_historico"
+            android:id="@+id/txtTipoTreinoHistorico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0.0"
@@ -51,9 +50,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="  m/s"
+            android:text=" km/h"
             android:textColor="@color/black"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -68,12 +66,17 @@
             android:textStyle="bold"
             android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/txtTipoTreinoPrecisao_historico"
+            android:id="@+id/txtTipoTreinoPrecisaoHistorico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0.0"
             android:textColor="@color/black"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" %"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -88,13 +91,11 @@
             android:textStyle="bold"
             android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/txtTipoTreinoGols_historico"
+            android:id="@+id/txtTipoTreinoGolsHistorico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
             android:textColor="@color/black"/>
-
     </LinearLayout>
-
 
 </LinearLayout>
