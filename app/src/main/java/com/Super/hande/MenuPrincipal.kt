@@ -2,6 +2,7 @@ package com.Super.hande
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -11,11 +12,18 @@ import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityMenuPrincipalBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MenuPrincipal : AppCompatActivity() {
 
     private lateinit var binding: ActivityMenuPrincipalBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,65 +43,35 @@ class MenuPrincipal : AppCompatActivity() {
             insets
         }
 
-        // Inicializa o Firebase Auth
+        // Inicializa Firebase Auth e Firestore
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
-        // Verifica se o usuário está logado
-        val usuarioAtual: FirebaseUser? = auth.currentUser
-        if (usuarioAtual == null) {
-            redirecionarParaLogin()
+        // Buscar e exibir os dados do usuário
+        carregarDadosDoUsuario()
+    }
+
+    private fun carregarDadosDoUsuario() {
+        val user = auth.currentUser
+        if (user != null) {
+            val userId = user.uid  // Obtém o ID do usuário autenticado
+
+            db.collection("Usuarios").document(userId).get()
+                .addOnSuccessListener { document ->
+                    if (document != null && document.exists()) {
+                        binding.userEmailTextView.text = document.getString("nome")
+                        binding.txtIdadeJogador.text = document.getString("idade")
+                        binding.txtAlturaJogador.text = document.getString("altura")
+                        binding.txtPesoJogador.text = document.getString("peso")
+                    } else {
+                        Toast.makeText(this, "Usuário não encontrado!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro ao carregar dados!", Toast.LENGTH_SHORT).show()
+                }
         } else {
-            carregarDadosUsuario(usuarioAtual)
+            Toast.makeText(this, "Usuário não autenticado!", Toast.LENGTH_SHORT).show()
         }
-/*
-        // Configura os listeners dos botões
-        binding.btnPlayerProfile.setOnClickListener {
-            irTelaPerfilJogador()
-        }
-
-        binding.trainingModesButton.setOnClickListener {
-            startActivity(Intent(this, ModoDeTreino::class.java))
-        }
-
-        binding.performanceButton.setOnClickListener {
-            startActivity(Intent(this, PerformanceJogador::class.java))
-        }
-
-        binding.historyButton.setOnClickListener {
-            startActivity(Intent(this, HistoricoDeTreino::class.java))
-        }
-
-        binding.logoutButton.setOnClickListener {
-            showLogoutDialog()
-        }
-        
- */
-    }
-
-    private fun carregarDadosUsuario(usuario: FirebaseUser) {
-        // Exibe o e-mail do usuário na interface (pode ser modificado para exibir nome, foto, etc.)
-        binding.userEmailTextView.text = "Bem-vindo, ${usuario.email}"
-    }
-
-    private fun redirecionarParaLogin() {
-        val intent = Intent(this, Login::class.java)
-        startActivity(intent)
-        finish()
-    }
-
-    private fun showLogoutDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Sair")
-            .setMessage("Tem certeza de que deseja sair?")
-            .setPositiveButton("Sim") { _, _ ->
-                auth.signOut()
-                redirecionarParaLogin()
-            }
-            .setNegativeButton("Cancelar", null)
-            .show()
-    }
-
-    private fun irTelaPerfilJogador() {
-        startActivity(Intent(this, PerfilDoJogador::class.java))
     }
 }

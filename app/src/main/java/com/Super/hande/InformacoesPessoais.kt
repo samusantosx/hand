@@ -11,13 +11,16 @@ import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityLoginBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class InformacoesPessoais : AppCompatActivity() {
 
     private lateinit var binding: ActivityInformacoesPessoaisBinding
-    private lateinit var db: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,38 +38,45 @@ class InformacoesPessoais : AppCompatActivity() {
 
 
 
-        // Inicializando Firebase Database
-        db = FirebaseDatabase.getInstance().reference.child("Usuarios")
-
-        // Recuperando os dados passados da tela de cadastro
-        val nome = intent.getStringExtra("nome")
-        val email = intent.getStringExtra("email")
+        // Inicializando Firebase Auth e Firestore
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         // Configurando evento de clique no botão salvar
         binding.btnSalvar.setOnClickListener {
-            salvarInformacoes(nome, email)
+            salvarInformacoes()
         }
     }
 
-    private fun salvarInformacoes(nome: String?, email: String?) {
+    private fun salvarInformacoes() {
+        val usuarioAtual = auth.currentUser
+        if (usuarioAtual == null) {
+            Toast.makeText(this, "Usuário não autenticado!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val userId = usuarioAtual.uid
+        val nome = intent.getStringExtra("nome") ?: "Desconhecido"
+        val email = intent.getStringExtra("email") ?: usuarioAtual.email
+
         val idade = binding.etIdade.text.toString()
         val altura = binding.etAltura.text.toString()
         val peso = binding.etPeso.text.toString()
 
         // Pegando a mão dominante selecionada
         val idMaoDominante = binding.rgMaoDominante.checkedRadioButtonId
-        val maoDominante = findViewById<RadioButton>(idMaoDominante)?.text.toString()
+        val maoDominante = findViewById<RadioButton>(idMaoDominante)?.text?.toString() ?: ""
 
         // Pegando a posição em quadra selecionada
         val idPosicaoQuadra = binding.rgPosicaoQuadra.checkedRadioButtonId
-        val posicaoQuadra = findViewById<RadioButton>(idPosicaoQuadra)?.text.toString()
+        val posicaoQuadra = findViewById<RadioButton>(idPosicaoQuadra)?.text?.toString() ?: ""
 
         if (idade.isEmpty() || altura.isEmpty() || peso.isEmpty() || maoDominante.isEmpty() || posicaoQuadra.isEmpty()) {
             Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show()
             return
         }
 
-        // Criando um mapa de dados para salvar no Firebase
+        // Criando um mapa de dados para salvar no Firestore
         val usuario = hashMapOf(
             "nome" to nome,
             "email" to email,
@@ -77,24 +87,17 @@ class InformacoesPessoais : AppCompatActivity() {
             "posicaoQuadra" to posicaoQuadra
         )
 
-        db.child(nome ?: "Desconhecido").setValue(usuario)
+        db.collection("usuarios").document(userId).set(usuario)
             .addOnSuccessListener {
                 Toast.makeText(this, "Informações salvas com sucesso!", Toast.LENGTH_SHORT).show()
 
                 // Ir para a próxima tela após salvar
                 val intent = Intent(this, Login::class.java)
-                intent.putExtra("nome", nome)
-                intent.putExtra("email", email)
-                intent.putExtra("idade", idade)
-                intent.putExtra("altura", altura)
-                intent.putExtra("peso", peso)
-                intent.putExtra("maoDominante", maoDominante)
-                intent.putExtra("posicaoQuadra", posicaoQuadra)
                 startActivity(intent)
                 finish()
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao salvar no Firebase!", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Erro ao salvar: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }
