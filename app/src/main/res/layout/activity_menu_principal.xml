@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:gravity="center"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:background="@drawable/bg_fundo5"
         android:layout_marginTop="8dp">
 
@@ -85,8 +85,7 @@
             android:layout_height="110dp"
             android:background="@drawable/bg_fundo4"
             android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="15dp">
+            android:gravity="center">
 
             <ImageView
                 android:layout_width="80dp"
@@ -107,8 +106,9 @@
             android:layout_height="110dp"
             android:background="@drawable/bg_fundo4"
             android:orientation="vertical"
-            android:layout_marginBottom="15dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
 
             <ImageView
                 android:layout_width="80dp"

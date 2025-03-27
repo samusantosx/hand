@@ -3,6 +3,7 @@ package com.Super.hande
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.Super.hande.databinding.ActivityTreinoDeResistenciaBinding
@@ -14,7 +15,7 @@ class TreinoDeResistencia : AppCompatActivity() {
     private lateinit var binding: ActivityTreinoDeResistenciaBinding
     private var startTime: Long = 0
     private var tempoTotalTreino: Int = 0
-    private var intensidadeTreino: Int = (5..10).random() // Simula intensidade aleatória de 5 a 10
+    private var intensidadeTreino: Int = (5..10).random()
     private var golsMarcados = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,34 +23,29 @@ class TreinoDeResistencia : AppCompatActivity() {
         binding = ActivityTreinoDeResistenciaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inicia o cronômetro quando o usuário entra na tela
+        // Inicia o cronômetro
         startTime = SystemClock.elapsedRealtime()
 
-        // Simula gols sendo marcados durante o treino
+        // Exibe gols por minuto
         binding.goalsValue.text = "Gols por minuto: ${calcularGolsPorMinuto()}"
 
-        // Atualiza a resistência quando o treino termina (ao sair da tela)
+        // Botão de voltar apenas fecha a tela
         binding.btnVoltar.setOnClickListener {
+            finish()
+        }
+
+        // Botão de finalizar treino → Redireciona para Avaliação de Desgaste
+        binding.btnFinalizarTreino.setOnClickListener {
             finalizarTreino()
         }
     }
 
     private fun finalizarTreino() {
-        tempoTotalTreino = ((SystemClock.elapsedRealtime() - startTime) / 1000 / 60).toInt() // Converte ms para minutos
-
+        tempoTotalTreino = ((SystemClock.elapsedRealtime() - startTime) / 1000 / 60).toInt()
         val desgaste = calcularDesgaste(tempoTotalTreino, intensidadeTreino)
 
-        // Atualiza os valores na tela
-        binding.tvTempoTreino.text = "Tempo médio de treino: $tempoTotalTreino min"
-        binding.tvDesgaste.text = "Desgaste: %.2f%%".format(desgaste)
-        binding.goalsValue.text = "Gols por minuto: ${calcularGolsPorMinuto()}"
-
-        // Salva os dados no Firebase
+        // Salvar no Firebase e redirecionar para Avaliação de Desgaste
         salvarNoFirebase(tempoTotalTreino, golsMarcados, desgaste)
-
-        // Volta ao menu
-        startActivity(Intent(this, MenuPrincipal::class.java))
-        finish()
     }
 
     private fun calcularGolsPorMinuto(): Double {
@@ -57,7 +53,7 @@ class TreinoDeResistencia : AppCompatActivity() {
     }
 
     private fun calcularDesgaste(tempoTreino: Int, intensidade: Int): Double {
-        return max(0.0, (tempoTreino * intensidade * 0.5)) // Fórmula simples de desgaste
+        return max(0.0, (tempoTreino * intensidade * 0.5))
     }
 
     private fun salvarNoFirebase(tempoTreino: Int, gols: Int, desgaste: Double) {
@@ -67,17 +63,20 @@ class TreinoDeResistencia : AppCompatActivity() {
             "golsFeitos" to gols,
             "desgaste" to desgaste
         )
+
         db.push().setValue(treinoData)
             .addOnSuccessListener {
+                Log.d("Firebase", "Treino salvo com sucesso!")
                 Toast.makeText(applicationContext, "Treino salvo!", Toast.LENGTH_SHORT).show()
+
+                // Redireciona para Avaliação de Desgaste
+                val intent = Intent(this@TreinoDeResistencia, AvaliacaoDesgaste::class.java)
+                startActivity(intent)
+                finish()
             }
-            .addOnFailureListener {
+            .addOnFailureListener { e ->
+                Log.e("Firebase", "Erro ao salvar treino: ${e.message}")
                 Toast.makeText(applicationContext, "Erro ao salvar treino.", Toast.LENGTH_SHORT).show()
             }
-
-        // Quando o treino acabar, iniciar a avaliação de desgaste
-        val intent = Intent(this, AvaliacaoDesgaste::class.java)
-        startActivity(intent)
-        finish() // Fecha a tela do treino
     }
 }
