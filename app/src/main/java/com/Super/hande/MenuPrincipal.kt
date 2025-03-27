@@ -35,7 +35,6 @@ class MenuPrincipal : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         // Configura o listener para aplicar os insets (barras do sistema)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -46,6 +45,25 @@ class MenuPrincipal : AppCompatActivity() {
         // Inicializa Firebase Auth e Firestore
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
+
+
+        // Navega para Treino de Precisão
+        binding.btnHistorico.setOnClickListener {
+            val intent = Intent(this, HistoricoDeTreino::class.java)
+            startActivity(intent)
+        }
+
+        // Navega para Treino de Velocidade
+        binding.btnModoTreino.setOnClickListener {
+            val intent = Intent(this, ModoDeTreino::class.java)
+            startActivity(intent)
+        }
+
+        // Navega para Treino de Resistência
+        binding.btnDesempenho.setOnClickListener {
+            val intent = Intent(this, PerformanceJogador::class.java)
+            startActivity(intent)
+        }
 
         // Buscar e exibir os dados do usuário
         carregarDadosDoUsuario()
@@ -73,5 +91,7 @@ class MenuPrincipal : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Usuário não autenticado!", Toast.LENGTH_SHORT).show()
         }
+
     }
+
 }

@@ -40,12 +40,15 @@ class PerformanceJogador : AppCompatActivity() {
                     val velocidade = snapshot.child("velocidade").getValue(Double::class.java)?.toFloat() ?: 0.0f
                     val precisao = snapshot.child("precisao").getValue(Double::class.java)?.toFloat() ?: 0.0f
                     val gols  = snapshot.child("Frenquecia de gols").getValue(Double::class.java)?.toFloat() ?: 0.0f
-
+/*
                    /* binding.speedText.text = "Velocidade: $velocidade m/s"
                     binding.precisionText.text = "Precisão: $precisao%"
                     binding.goalsFrequencyText.text = "Frenquecia de gols: $gols"
                     
                     */
+
+
+ */
 
                 } else {
                     Toast.makeText(applicationContext, "Nenhum dado encontrado", Toast.LENGTH_SHORT).show()
