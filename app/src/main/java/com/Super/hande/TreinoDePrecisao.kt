@@ -56,7 +56,7 @@ class TreinoDePrecisao : AppCompatActivity() {
         })
 
         // Configura o botão para voltar ao menu principal
-        binding.backToMenuButton.setOnClickListener {
+        binding.btnVoltar.setOnClickListener {
             val intent = Intent(this, MenuPrincipal::class.java)
             startActivity(intent)
             finish()
