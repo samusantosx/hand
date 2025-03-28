@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityTreinoDeVelocidadeBinding
 import com.github.anastr.speedviewlib.SpeedView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 
 class TreinoDeVelocidade : AppCompatActivity() {
@@ -16,6 +17,7 @@ class TreinoDeVelocidade : AppCompatActivity() {
     private lateinit var binding: ActivityTreinoDeVelocidadeBinding
     private lateinit var db: DatabaseReference
     private lateinit var velocimetro: SpeedView  // Adicionando referência ao velocímetro
+    private lateinit var bottom: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,35 @@ class TreinoDeVelocidade : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+
+        // Configurando BottomNavigationView
+        bottom = findViewById(R.id.botton_navigation) // Verifique se o ID está correto no XML
+        bottom.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    startActivity(Intent(this, MenuPrincipal::class.java))
+                    true
+                }
+                R.id.modo_treino -> {
+                    startActivity(Intent(this, ModoDeTreino::class.java))
+                    true
+                }
+                R.id.historico -> {
+                    startActivity(Intent(this, HistoricoDeTreino::class.java))
+                    true
+                }
+                R.id.desempenho -> {
+                    startActivity(Intent(this, PerformanceJogador::class.java))
+                    true
+                }
+                R.id.perfil -> {
+                    startActivity(Intent(this, PerfilDoJogador::class.java))
+                    true
+                }
+                else -> false
+            }
         }
 
         // Inicializa o Firebase Database
@@ -50,11 +81,14 @@ class TreinoDeVelocidade : AppCompatActivity() {
             }
         })
 
+        /*
         // Configura o botão para voltar ao menu principal
         binding.btnVoltar.setOnClickListener {
             val intent = Intent(this, MenuPrincipal::class.java)
             startActivity(intent)
             finish()  // Fecha a tela atual para evitar sobreposição de atividades
         }
+
+         */
     }
 }

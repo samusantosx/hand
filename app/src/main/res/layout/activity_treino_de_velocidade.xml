@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/trave"
-    android:padding="16dp"
+    android:background="@color/bege_claro"
     android:gravity="center"
     android:id="@+id/main">
 
@@ -13,10 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Treino de Velocidade"
-        android:textColor="@color/white"
+        android:textColor="@color/laranja"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:paddingBottom="16dp" />
+       android:fontFamily="@font/roboto_bold"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="150dp"/>
 
 
     <com.github.anastr.speedviewlib.SpeedView
@@ -25,18 +25,20 @@
         android:layout_height="300dp"
         android:layout_margin="20dp"
         app:sv_speedTextPosition="BOTTOM_CENTER"
-        app:sv_speedTextSize="40sp"
-        app:sv_speedTextColor="@color/verde"
+        app:sv_speedTextSize="60sp"
+        app:sv_textColor="@color/roxo"
+        app:sv_textSize="15sp"
+        app:sv_speedTextColor="@color/roxo"
         app:sv_speedTextFormat="INTEGER"
         app:sv_indicatorColor="@color/black"
-        app:sv_indicatorWidth="4dp"
+        app:sv_indicatorWidth="5dp"
         app:sv_tickNumber="8"
         app:sv_tickTextFormat="INTEGER"
-        app:sv_backgroundCircleColor="@color/white"
-        app:sv_markColor="@color/black"
+        app:sv_backgroundCircleColor="@color/bege_claro"
+        app:sv_markColor="@color/roxo"
         app:sv_unit="km/h"
-        app:sv_unitTextSize="16sp"
-        app:sv_unitTextColor="@color/black"
+        app:sv_unitTextSize="26sp"
+        app:sv_unitTextColor="@color/roxo"
         app:sv_unitUnderSpeedText="true"
         app:sv_unitSpeedInterval="8dp"
         app:sv_withTremble="false"
@@ -49,22 +51,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Velocidade da bola"
-        android:textColor="@color/white"
+        android:textColor="@color/roxo"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:paddingBottom="8dp" />
+        android:paddingBottom="8dp"
+        android:layout_weight="1"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnVoltar"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_fundo2"
-        android:text="Voltar ao Menu"
-        android:textColor="@color/white"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="15dp"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:textAllCaps="false"/>
+        android:id="@+id/botton_navigation"
+        android:background="@color/white"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/roxo"
+        app:itemTextColor="@color/roxo"
+        />
+
+
 </LinearLayout>

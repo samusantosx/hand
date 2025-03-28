@@ -14,4 +14,11 @@
     <color name="roxo">#440031</color>
     <color name="bege_claro">#FAF8EC</color>
 
+    <color name="neon_azul">#00FFFF</color>
+    <color name="neon_verde">#00FF00</color>
+    <color name="neon_ciano">#00E5FF</color>
+    <color name="neon_roxo">#8A2BE2</color>
+    <color name="preto_escuro">#121212</color>
+
+
 </resources>

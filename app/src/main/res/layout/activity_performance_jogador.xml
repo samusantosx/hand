@@ -1,54 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bege_claro"
-    android:fillViewport="true">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Título -->
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center"
+        android:text="Desempenho do Jogador"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/laranja"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"/>
+
+    <!-- Conteúdo principal com Scroll -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:id="@+id/main">
 
-        <!-- Toolbar fixada no topo -->
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/bege_claro"
-                android:title="Menu Principal"
-                android:titleTextColor="@color/roxo"
-                app:titleTextAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-                app:navigationIcon="@drawable/ic_voltar" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <!-- Título -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Desempenho do Jogador"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- Gráficos para visualização -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:elevation="4dp">
+            android:padding="20dp">
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/precisionChart"
@@ -70,22 +52,19 @@
                 android:layout_height="200dp"
                 android:layout_marginTop="16dp"
                 android:background="@color/white" />
+
         </LinearLayout>
 
-        <!-- Botão Atualizar -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/updatePerformanceButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_fundo2"
-            android:text="Atualizar Dados"
-            android:textColor="@color/white"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="15dp"
-            android:textSize="18sp"
-            android:textAlignment="center"
-            android:textAllCaps="false"/>
+    </ScrollView>
 
-    </LinearLayout>
-</ScrollView>
+    <!-- Barra de navegação fixa na base -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        android:background="@color/white"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/roxo"
+        app:itemTextColor="@color/roxo"/>
+</LinearLayout>

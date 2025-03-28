@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityTreinoDePrecisaoBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 
 class TreinoDePrecisao : AppCompatActivity() {
@@ -19,6 +20,7 @@ class TreinoDePrecisao : AppCompatActivity() {
     private lateinit var db: DatabaseReference
 
     private lateinit var goalOverlayView: GoalOverlayView
+    private lateinit var bottom: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,33 @@ class TreinoDePrecisao : AppCompatActivity() {
             insets
         }
 
-
+        // Configurando BottomNavigationView
+        bottom = findViewById(R.id.botton_navigation) // Verifique se o ID está correto no XML
+        bottom.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    startActivity(Intent(this, MenuPrincipal::class.java))
+                    true
+                }
+                R.id.modo_treino -> {
+                    startActivity(Intent(this, ModoDeTreino::class.java))
+                    true
+                }
+                R.id.historico -> {
+                    startActivity(Intent(this, HistoricoDeTreino::class.java))
+                    true
+                }
+                R.id.desempenho -> {
+                    startActivity(Intent(this, PerformanceJogador::class.java))
+                    true
+                }
+                R.id.perfil -> {
+                    startActivity(Intent(this, PerfilDoJogador::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
 
         goalOverlayView = binding.goalOverlayView
 
@@ -54,7 +82,7 @@ class TreinoDePrecisao : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Erro ao acessar Firebase", Toast.LENGTH_SHORT).show()
             }
         })
-
+/*
         // Configura o botão para voltar ao menu principal
         binding.btnVoltar.setOnClickListener {
             val intent = Intent(this, MenuPrincipal::class.java)
@@ -62,11 +90,15 @@ class TreinoDePrecisao : AppCompatActivity() {
             finish()
         }
 
+ */
+
         monitorarArremessos()
     }
 
     private fun monitorarArremessos() {
-        val sensoresDb = FirebaseDatabase.getInstance().getReference("precisao")
+        val database = FirebaseDatabase.getInstance()
+        val sensoresDb = database.getReference("precisao")
+        val performanceDb = database.getReference("performance/precisao") // Caminho para atualizar
 
         sensoresDb.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -75,6 +107,13 @@ class TreinoDePrecisao : AppCompatActivity() {
                 val sensorBottomLeft = snapshot.child("sensor_bottom_left").getValue(Int::class.java) ?: 100
                 val sensorBottomRight = snapshot.child("sensor_bottom_right").getValue(Int::class.java) ?: 100
 
+                // Somar os valores dos sensores
+                val novaPrecisao = sensorTopLeft + sensorTopRight + sensorBottomLeft + sensorBottomRight
+
+                // Atualizar no Firebase
+                performanceDb.setValue(novaPrecisao)
+
+                // Atualizar visualização
                 val acertos = mutableListOf<Pair<Float, Float>>()
                 val width = goalOverlayView.width.toFloat()
                 val height = goalOverlayView.height.toFloat()
@@ -92,4 +131,5 @@ class TreinoDePrecisao : AppCompatActivity() {
             }
         })
     }
+
 }

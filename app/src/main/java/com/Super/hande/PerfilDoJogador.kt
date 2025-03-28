@@ -1,5 +1,6 @@
 package com.Super.hande
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
@@ -19,6 +20,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -27,6 +29,7 @@ class PerfilDoJogador : AppCompatActivity() {
     private lateinit var binding: ActivityPerfilDoJogadorBinding
     private val dbFirestore = FirebaseFirestore.getInstance()
     private val dbRealtime = FirebaseDatabase.getInstance().getReference("performance")
+    private lateinit var bottom: BottomNavigationView
 
     private lateinit var performanceChart: LineChart
     private val performanceEntries = ArrayList<Entry>()
@@ -43,6 +46,34 @@ class PerfilDoJogador : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Configurando BottomNavigationView
+        bottom = findViewById(R.id.botton_navigation) // Verifique se o ID está correto no XML
+        bottom.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home -> {
+                    startActivity(Intent(this, MenuPrincipal::class.java))
+                    true
+                }
+                R.id.modo_treino -> {
+                    startActivity(Intent(this, ModoDeTreino::class.java))
+                    true
+                }
+                R.id.historico -> {
+                    startActivity(Intent(this, HistoricoDeTreino::class.java))
+                    true
+                }
+                R.id.desempenho -> {
+                    startActivity(Intent(this, PerformanceJogador::class.java))
+                    true
+                }
+                R.id.perfil -> {
+                    startActivity(Intent(this, PerfilDoJogador::class.java))
+                    true
+                }
+                else -> false
+            }
         }
 
         // Inicializar gráfico

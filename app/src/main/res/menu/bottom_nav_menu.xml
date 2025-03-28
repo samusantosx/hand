@@ -17,6 +17,10 @@
         android:title="Desempenho"
         android:icon="@drawable/ic_desempenho"
         />
+    <item android:id="@+id/perfil"
+        android:title="Perfil"
+        android:icon="@drawable/ic_pesrson"
+        />
 
 
 </menu>

@@ -71,6 +71,10 @@ class MenuPrincipal : AppCompatActivity() {
                     startActivity(Intent(this, PerformanceJogador::class.java))
                     true
                 }
+                R.id.perfil -> {
+                    startActivity(Intent(this, PerfilDoJogador::class.java))
+                    true
+                }
                 else -> false
             }
         }
