@@ -10,6 +10,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.Super.hande.databinding.ActivityMenuPrincipalBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -24,6 +26,7 @@ class MenuPrincipal : AppCompatActivity() {
     private lateinit var binding: ActivityMenuPrincipalBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
+    private lateinit var bottom: BottomNavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,43 +49,32 @@ class MenuPrincipal : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-/*
-        // Navega para Treino de Precisão
-        binding.btnHistorico.setOnClickListener {
-            val intent = Intent(this, HistoricoDeTreino::class.java)
-            startActivity(intent)
-        }
 
-        // Navega para Treino de Velocidade
-        binding.btnModoTreino.setOnClickListener {
-            val intent = Intent(this, ModoDeTreino::class.java)
-            startActivity(intent)
-        }
 
-        // Navega para Treino de Resistência
-        binding.btnDesempenho.setOnClickListener {
-            val intent = Intent(this, PerformanceJogador::class.java)
-            startActivity(intent)
-        }
-*/
-
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+        // Configurando BottomNavigationView
+        bottom = findViewById(R.id.botton_navigation) // Verifique se o ID está correto no XML
+        bottom.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
+                    startActivity(Intent(this, MenuPrincipal::class.java))
+                    true
+                }
+                R.id.modo_treino -> {
                     startActivity(Intent(this, ModoDeTreino::class.java))
                     true
                 }
-                R.id.profile -> {
-                    startActivity(Intent(this, Desem::class.java))
+                R.id.historico -> {
+                    startActivity(Intent(this, HistoricoDeTreino::class.java))
                     true
                 }
-                R.id.settings -> {
-                    startActivity(Intent(this, SettingsActivity::class.java))
+                R.id.desempenho -> {
+                    startActivity(Intent(this, PerformanceJogador::class.java))
                     true
                 }
                 else -> false
             }
         }
+
 
         // Buscar e exibir os dados do usuário
         carregarDadosDoUsuario()
@@ -102,6 +94,8 @@ class MenuPrincipal : AppCompatActivity() {
                         binding.txtIdadeJogador.text = document.getString("idade") ?: "Idade não informada"
                         binding.txtAlturaJogador.text = document.getString("altura") ?: "Altura não informada"
                         binding.txtPesoJogador.text = document.getString("peso") ?: "Peso não informado"
+                        binding.txtMaoJogador.text = document.getString("maoDominante")?:"Dado não informado"
+                        binding.txtPosicaoJogador.text = document.getString("posicaoQuadra")?:"Dado não encontrado"
                     } else {
                         Toast.makeText(this, "Usuário não encontrado!", Toast.LENGTH_SHORT).show()
                     }

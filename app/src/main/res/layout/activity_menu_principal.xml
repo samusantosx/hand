@@ -14,7 +14,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_user"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="50dp"/>
 
     <TextView
         android:id="@+id/userEmailTextView"
@@ -23,63 +23,158 @@
         android:text="Nome"
         android:textColor="@color/white"
         android:fontFamily="@font/roboto_bold"
-        android:textSize="20sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Idade"
-        android:textColor="@color/white"
-        android:fontFamily="@font/roboto_bold"
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/txtIdadeJogador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="00"
-        android:textColor="@color/white"
-        android:fontFamily="@font/roboto"
-        android:textSize="15sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Altura"
-        android:textColor="@color/white"
-        android:fontFamily="@font/roboto_bold"
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/txtAlturaJogador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0,0"
-        android:textColor="@color/white"
-        android:fontFamily="@font/roboto"
-        android:textSize="15sp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Peso"
-        android:textColor="@color/white"
-        android:fontFamily="@font/roboto_bold"
-        android:textSize="20sp"/>
-    <TextView
-        android:id="@+id/txtPesoJogador"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0,0"
-        android:textColor="@color/white"
-        android:fontFamily="@font/roboto"
-        android:textSize="15sp"/>
-
+        android:textSize="20sp"
+        android:layout_marginBottom="250dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="0dp"
         android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:background="@drawable/bg_fundo5"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="8dp"
+        android:layout_weight="1">
 
-        <!--
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Idade:"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="25sp"
+                android:gravity="end"/>
+
+            <TextView
+                android:id="@+id/txtIdadeJogador"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="00"
+                android:textColor="@color/roxo"
+                android:textSize="20sp"
+                android:gravity="end"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Altura:"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="25sp"
+                android:layout_weight="1"
+                android:gravity="end"/>
+            <TextView
+                android:id="@+id/txtAlturaJogador"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0,0"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Peso:"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="25sp"
+                android:layout_weight="1"
+                android:gravity="end"/>
+            <TextView
+                android:id="@+id/txtPesoJogador"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="0,0"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mão:"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="25sp"
+                android:layout_weight="1"
+                android:gravity="end"/>
+            <TextView
+                android:id="@+id/txtMaoJogador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="direita"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Posição:"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="25sp"
+                android:layout_weight="1"
+                android:gravity="start"/>
+            <TextView
+                android:id="@+id/txtPosicaoJogador"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="meia"
+                android:textColor="@color/roxo"
+                android:fontFamily="@font/roboto"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:gravity="end"/>
+
+        </LinearLayout>
+
+<!--
         <LinearLayout
             android:id="@+id/btnModoTreino"
             android:layout_width="110dp"
@@ -145,7 +240,7 @@
                 android:textColor="@color/white"/>
 
         </LinearLayout>
-        -->
+-->
 
 
 
@@ -153,11 +248,14 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:id="@+id/botton_navigation"
         android:background="@color/white"
         app:menu="@menu/bottom_nav_menu"
-        app:labelVisibilityMode="unlabeled"/>
+        app:itemIconSize="30dp"
+        app:itemIconTint="@color/roxo"
+        app:itemTextColor="@color/roxo"
+       />
 
 
 </LinearLayout>
