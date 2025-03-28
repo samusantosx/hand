@@ -16,6 +16,7 @@
         android:padding="16dp"
         android:background="@drawable/fundo02">
 
+        <!-- Logo -->
         <ImageView
             android:id="@+id/logoImage"
             android:layout_width="wrap_content"
@@ -36,7 +37,7 @@
             android:fontFamily="@font/roboto_bold"
             android:textStyle="bold"/>
 
-        <!-- Idade -->
+        <!-- Campos de Entrada -->
         <EditText
             android:id="@+id/etIdade"
             android:layout_width="match_parent"
@@ -47,35 +48,34 @@
             android:padding="12dp"
             android:textColor="@color/roxo"
             android:textColorHint="@color/roxo"
-            android:fontFamily="@font/roboto_bold"/>
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginTop="10dp"/>
 
-        <!-- Altura -->
         <EditText
             android:id="@+id/etAltura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@drawable/bg_fundo3"
             android:hint="Altura (cm)"
             android:inputType="numberDecimal"
             android:padding="12dp"
             android:textColor="@color/roxo"
             android:textColorHint="@color/roxo"
-            android:fontFamily="@font/roboto_bold"/>
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginTop="10dp"/>
 
-        <!-- Peso -->
         <EditText
             android:id="@+id/etPeso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@drawable/bg_fundo3"
             android:hint="Peso (kg)"
             android:inputType="numberDecimal"
             android:padding="12dp"
             android:textColor="@color/roxo"
             android:textColorHint="@color/roxo"
-            android:fontFamily="@font/roboto_bold"/>
+            android:fontFamily="@font/roboto_bold"
+            android:layout_marginTop="10dp"/>
 
         <!-- Mão Dominante -->
         <TextView
@@ -91,28 +91,40 @@
             android:id="@+id/rgMaoDominante"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <RadioButton
                 android:id="@+id/rbDestro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Destro"
-                android:textColor="@color/roxo"/>
+                android:textColor="@color/roxo"
+                android:buttonTint="@color/roxo"
+                android:layout_marginEnd="8dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/roboto"/>
 
             <RadioButton
                 android:id="@+id/rbCanhoto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Canhoto"
-                android:textColor="@color/roxo"/>
+                android:textColor="@color/roxo"
+                android:buttonTint="@color/roxo"
+                android:layout_marginEnd="8dp"
+                android:textSize="18sp"
+                android:fontFamily="@font/roboto"/>
 
             <RadioButton
                 android:id="@+id/rbAmbidestro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ambidestro"
-                android:textColor="@color/roxo"/>
+                android:textColor="@color/roxo"
+                android:buttonTint="@color/roxo"
+                android:textSize="18sp"
+                android:fontFamily="@font/roboto"/>
         </RadioGroup>
 
         <!-- Posição em Quadra -->
@@ -127,37 +139,49 @@
 
         <RadioGroup
             android:id="@+id/rgPosicaoQuadra"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <RadioButton
                 android:id="@+id/rbPonta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ponta"
-                android:textColor="@color/roxo"/>
+                android:textColor="@color/roxo"
+                android:buttonTint="@color/roxo"
+                android:layout_marginEnd="4dp"
+                android:textSize="18sp"/>
 
             <RadioButton
                 android:id="@+id/rbArmador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Armador"
-                android:textColor="@color/roxo"/>
+                android:textColor="@color/roxo"
+                android:buttonTint="@color/roxo"
+                android:layout_marginEnd="4dp"
+                android:textSize="18sp"/>
 
             <RadioButton
                 android:id="@+id/rbPivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pivô"
-                android:textColor="@color/roxo"/>
+                android:textColor="@color/roxo"
+                android:buttonTint="@color/roxo"
+                android:layout_marginEnd="4dp"
+                android:textSize="18sp"/>
 
             <RadioButton
                 android:id="@+id/rbLateral"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lateral"
-                android:textColor="@color/roxo"/>
+                android:textColor="@color/roxo"
+                android:buttonTint="@color/roxo"
+                android:textSize="18sp"/>
         </RadioGroup>
 
         <!-- Botão Salvar -->
@@ -173,7 +197,8 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:fontFamily="@font/roboto_bold"/>
+            android:fontFamily="@font/roboto_bold"
+            android:padding="12dp"/>
     </LinearLayout>
 
 </ScrollView>
