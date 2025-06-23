@@ -45,7 +45,7 @@
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
             android:background="@drawable/bg_fundo3"
-            android:hint="Nom"
+            android:hint="Nome"
             android:padding="12dp"
             android:textColor="@color/roxo"
             android:textColorHint="@color/roxo"
